@@ -1,0 +1,1063 @@
+/* Sewni - Professional Admin Registration Styles */
+
+/* Layout with Sidebar - Same as AdminDashboard */
+.admin-registration-layout {
+  display: flex;
+  height: 100vh;
+  background: #f8fafc;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.admin-registration-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  margin-left: 1px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.admin-registration-container {
+  width: 100%;
+  max-width: 1200px;
+  padding: 24px 32px;
+  margin: 0 auto;
+}
+
+/* Main Box Container - Two Column Layout */
+.admin-registration-box {
+  width: 100%;
+  max-width: 1200px;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  display: flex;
+  min-height: 700px;
+}
+
+/* Left Panel - Registration Form */
+.admin-registration-left {
+  flex: 0 0 60%;
+  max-width: 60%;
+  padding: 60px 50px;
+  background: #ffffff;
+  overflow-y: auto;
+}
+
+/* Right Panel - Information */
+.admin-registration-right {
+  flex: 0 0 40%;
+  max-width: 40%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 60px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Header Styles */
+.admin-registration-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.admin-logo {
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.admin-logo-main {
+  color: #10b981;
+}
+
+.admin-logo-accent {
+  color: #1e293b;
+}
+
+.admin-registration-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+}
+
+.admin-registration-subtitle {
+  font-size: 16px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Form Styles */
+.admin-registration-form-container {
+  max-width: 100%;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.admin-required {
+  color: #ef4444;
+  margin-left: 4px;
+}
+
+/* Input Styles */
+.admin-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 0 16px;
+  height: 50px;
+  transition: all 0.2s ease;
+}
+
+.admin-input-wrapper:focus-within {
+  border-color: #10b981;
+  box-shadow: none;
+  outline: none;
+}
+
+.admin-input-wrapper.error {
+  border-color: #ef4444;
+}
+
+.admin-input-wrapper.error:focus-within {
+  border-color: #ef4444;
+  outline: none;
+}
+
+.admin-input-icon {
+  color: #9ca3af;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-form-input {
+  flex: 1;
+  height: 100%;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  font-size: 15px;
+  color: #374151;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-form-input::placeholder {
+  color: #9ca3af;
+}
+
+.admin-form-input:focus {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.admin-form-input:disabled {
+  background: #f9fafb;
+  cursor: not-allowed;
+}
+
+/* Input Status */
+.admin-input-status {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 10;
+  background: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.admin-input-status.checking {
+  color: #6b7280;
+}
+
+.admin-input-status.available {
+  color: #10b981;
+  background: #f0fdf4;
+}
+
+.admin-input-status.taken {
+  color: #ef4444;
+  background: #fef2f2;
+}
+
+/* Error Messages */
+.admin-error-message {
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+}
+
+/* Password Requirements */
+.admin-password-requirements {
+  margin-top: 12px;
+  padding: 16px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.admin-requirements-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-requirements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-requirement {
+  font-size: 12px;
+  color: #64748b;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.admin-requirement::before {
+  content: '○';
+  font-size: 8px;
+  color: #9ca3af;
+}
+
+.admin-requirement.met {
+  color: #10b981;
+  font-weight: 500;
+}
+
+.admin-requirement.met::before {
+  content: '✓';
+  color: #10b981;
+}
+
+/* Submit Error */
+.admin-submit-error {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.admin-error-icon {
+  color: #ef4444;
+  font-size: 18px;
+}
+
+.admin-error-text {
+  color: #dc2626;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Form Actions */
+.admin-form-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-btn {
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.admin-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-btn-back {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.admin-btn-back:hover:not(:disabled) {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.admin-btn-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.3);
+}
+
+.admin-btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.4);
+}
+
+.admin-btn-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Right Panel Content */
+.admin-right-content {
+  max-width: 400px;
+  width: 100%;
+}
+
+.admin-right-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.admin-right-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.admin-right-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.admin-right-subtitle {
+  font-size: 16px;
+  opacity: 0.9;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Features Section */
+.admin-features {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.admin-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.admin-feature-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.admin-feature-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.admin-feature-content p {
+  font-size: 14px;
+  opacity: 0.8;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Security Note */
+.admin-security-note {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.admin-security-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.admin-security-content h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.admin-security-content p {
+  font-size: 14px;
+  opacity: 0.9;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Success Page */
+.admin-registration-success {
+  text-align: center;
+  padding: 120px 100px;
+  max-width: 950px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid #e2e8f0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.admin-success-icon {
+  font-size: 80px;
+  color: #10b981;
+  margin-bottom: 32px;
+}
+
+.admin-success-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 16px 0;
+  line-height: 1.2;
+}
+
+.admin-success-message {
+  font-size: 18px;
+  color: #64748b;
+  margin: 0 0 40px 0;
+  line-height: 1.6;
+}
+
+.admin-success-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.admin-success-btn {
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.admin-success-btn.primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.3);
+}
+
+.admin-success-btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px 0 rgba(16, 185, 129, 0.4);
+}
+
+.admin-success-btn.secondary {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.admin-success-btn.secondary:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+/* Responsive Design - Same pattern as AdminDashboard */
+@media (max-width: 1024px) {
+  .admin-registration-layout {
+    flex-direction: column;
+  }
+  
+  .admin-registration-main {
+    margin-left: 0;
+  }
+  
+  .admin-registration-container {
+    padding: 20px 24px;
+  }
+  
+  .admin-registration-box {
+    flex-direction: column;
+    max-width: 600px;
+  }
+  
+  .admin-registration-left {
+    padding: 40px 30px;
+  }
+  
+  .admin-registration-right {
+    padding: 40px 30px;
+    min-height: auto;
+  }
+  
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .admin-form-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .admin-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-registration-layout {
+    flex-direction: column;
+  }
+  
+  .admin-registration-main {
+    margin-left: 0;
+  }
+  
+  .admin-registration-container {
+    padding: 20px;
+  }
+  
+  .admin-registration-left,
+  .admin-registration-right {
+    padding: 30px 20px;
+  }
+  
+  .admin-registration-title {
+    font-size: 24px;
+  }
+  
+  .admin-right-title {
+    font-size: 28px;
+  }
+  
+  .admin-requirements-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Form Grid */
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* Form Groups */
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.admin-required {
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.admin-optional {
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* Input Styles */
+.admin-form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: var(--font);
+  background: #ffffff;
+  color: #374151;
+  outline: none;
+}
+
+.admin-form-input:focus {
+  border-color: var(--color-green);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.admin-form-input.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.admin-form-input.success {
+  border-color: var(--color-green);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.admin-form-input:disabled {
+  background: #f9fafb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Input Wrapper for Username */
+.admin-input-wrapper {
+  position: relative;
+}
+
+.admin-input-loading,
+.admin-input-success,
+.admin-input-error {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.admin-input-loading {
+  color: #64748b;
+}
+
+.admin-input-success {
+  color: var(--color-green);
+}
+
+.admin-input-error {
+  color: #ef4444;
+}
+
+/* Error Messages */
+.admin-error-message {
+  font-size: 12px;
+  color: #ef4444;
+  font-weight: 500;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.admin-password-hint {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* Submit Error */
+.admin-submit-error {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #dc2626;
+}
+
+.admin-error-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.admin-error-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Form Actions */
+.admin-form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+  gap: 16px;
+}
+
+.admin-form-actions-right {
+  display: flex;
+  gap: 16px;
+}
+
+/* Buttons */
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  outline: none;
+  min-width: 140px;
+}
+
+.admin-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.admin-btn-primary {
+  background: var(--color-green);
+  color: white;
+  border: 1px solid var(--color-green);
+}
+
+.admin-btn-primary:hover:not(:disabled) {
+  background: #16a34a;
+  border-color: #16a34a;
+}
+
+.admin-btn-primary:disabled {
+  background: #86efac;
+  border-color: #86efac;
+}
+
+.admin-btn-secondary {
+  background: #ffffff;
+  color: #64748b;
+  border: 1px solid #d1d5db;
+}
+
+.admin-btn-secondary:hover:not(:disabled) {
+  background: #f8fafc;
+  border-color: #9ca3af;
+  color: #4b5563;
+}
+
+.admin-btn-back {
+  background: #f8fafc;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  font-weight: 500;
+}
+
+.admin-btn-back:hover:not(:disabled) {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+
+/* Button Loading State */
+.admin-btn-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid #ffffff;
+  border-radius: 50%;
+  animation: admin-spin 1s linear infinite;
+}
+
+@keyframes admin-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Success state animation */
+.admin-registration-success {
+  animation: admin-fadeIn 0.4s ease-out;
+}
+
+.admin-success-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--color-green), #16a34a);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 auto 24px auto;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
+}
+
+.admin-success-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.025em;
+}
+
+.admin-success-message {
+  font-size: 16px;
+  color: #64748b;
+  margin: 0 0 32px 0;
+  line-height: 1.5;
+}
+
+.admin-success-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.admin-success-btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  min-width: 140px;
+}
+
+.admin-success-btn.primary {
+  background: var(--color-green);
+  color: white;
+  border: 1px solid var(--color-green);
+}
+
+.admin-success-btn.primary:hover {
+  background: #16a34a;
+  border-color: #16a34a;
+}
+
+.admin-success-btn.secondary {
+  background: #ffffff;
+  color: #64748b;
+  border: 1px solid #d1d5db;
+}
+
+.admin-success-btn.secondary:hover {
+  background: #f8fafc;
+  border-color: #9ca3af;
+  color: #4b5563;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-registration-layout {
+    flex-direction: column;
+  }
+  
+  .admin-registration-main {
+    margin-left: 0;
+  }
+  
+  .admin-registration-container {
+    padding: 20px;
+  }
+  
+  .admin-registration-title {
+    font-size: 24px;
+  }
+  
+  .admin-registration-subtitle {
+    font-size: 14px;
+  }
+  
+  .admin-registration-form-container {
+    padding: 24px;
+  }
+  
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .admin-form-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .admin-form-actions-right {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .admin-btn {
+    width: 100%;
+  }
+  
+  .admin-success-actions {
+    flex-direction: column;
+  }
+  
+  .admin-success-btn {
+    width: 100%;
+  }
+  
+  .admin-registration-success {
+    padding: 60px 40px;
+    max-width: 600px;
+  }
+  
+  .admin-success-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
+  
+  .admin-success-title {
+    font-size: 22px;
+  }
+  
+  .admin-success-message {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .admin-registration-layout {
+    flex-direction: column;
+  }
+  
+  .admin-registration-main {
+    margin-left: 0;
+  }
+  
+  .admin-registration-container {
+    padding: 20px 24px;
+  }
+  
+  .admin-registration-success {
+    padding: 80px 60px;
+    max-width: 750px;
+  }
+  
+  .admin-registration-form-container {
+    padding: 32px;
+  }
+  
+  .admin-form-grid {
+    gap: 20px;
+  }
+}
+
+/* Focus and Accessibility */
+.admin-form-input:focus-visible {
+  outline: 2px solid var(--color-green);
+  outline-offset: 2px;
+}
+
+.admin-btn:focus-visible {
+  outline: 2px solid var(--color-green);
+  outline-offset: 2px;
+}
+
+/* Animation for form appearance */
+.admin-registration-form-container {
+  animation: admin-slideUp 0.3s ease-out;
+}
+
+@keyframes admin-slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Success state animation */
+.admin-registration-success {
+  animation: admin-fadeIn 0.4s ease-out;
+}
+
+@keyframes admin-fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

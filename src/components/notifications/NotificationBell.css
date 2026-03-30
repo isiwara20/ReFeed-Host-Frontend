@@ -1,0 +1,250 @@
+.rf-bell-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.rf-bell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.rf-bell:hover {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.rf-bell:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.22);
+}
+
+.rf-bell-has-unread {
+  border-color: #86efac;
+  animation: rf-bell-pulse 1.8s ease-in-out infinite;
+}
+
+.rf-bell-icon-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.rf-bell-icon {
+  width: 18px;
+  height: 18px;
+  color: #374151;
+}
+
+.rf-bell-badge {
+  position: absolute;
+  top: -7px;
+  right: -9px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.rf-bell-popup {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: min(360px, calc(100vw - 20px));
+  max-height: 460px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+  z-index: 1400;
+}
+
+.rf-bell-popup-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 12px 10px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.rf-bell-popup-head h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #111827;
+}
+
+.rf-bell-popup-subtitle {
+  margin: 4px 0 0;
+  color: #6b7280;
+  font-size: 0.74rem;
+}
+
+.rf-bell-popup-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rf-bell-popup-link {
+  border: none;
+  background: transparent;
+  color: #166534;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.rf-bell-popup-link:hover {
+  color: #14532d;
+}
+
+.rf-bell-popup-note {
+  margin: 0;
+  padding: 12px;
+  color: #6b7280;
+  font-size: 0.84rem;
+}
+
+.rf-bell-popup-error {
+  color: #b91c1c;
+}
+
+.rf-bell-popup-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  display: grid;
+  gap: 8px;
+  max-height: 340px;
+  overflow-y: auto;
+}
+
+.rf-bell-item {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rf-bell-item:hover {
+  background: #f9fafb;
+}
+
+.rf-bell-item-unread {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.rf-bell-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.rf-bell-item-title {
+  color: #111827;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.rf-bell-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #16a34a;
+  flex-shrink: 0;
+}
+
+.rf-bell-item-body {
+  margin: 5px 0 0;
+  color: #374151;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.rf-bell-item-time {
+  color: #6b7280;
+  font-size: 0.72rem;
+}
+
+.rf-bell-item-bottom {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.rf-bell-mark-read {
+  border: none;
+  background: transparent;
+  color: #166534;
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0;
+}
+
+.rf-bell-mark-read:hover {
+  color: #14532d;
+}
+
+.rf-bell-popup-foot {
+  border-top: 1px solid #f3f4f6;
+  padding: 10px 12px;
+}
+
+.rf-bell-popup-view-all {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #374151;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rf-bell-popup-view-all:hover {
+  background: #f9fafb;
+}
+
+@media (max-width: 768px) {
+  .rf-bell-popup {
+    right: -8px;
+  }
+}
+
+@keyframes rf-bell-pulse {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

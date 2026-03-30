@@ -1,0 +1,158 @@
+/* Sewni - Professional Admin Dashboard Styles */
+
+.admin-dashboard {
+  display: flex;
+  height: 100vh;
+  background: #f8fafc;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #1e293b;
+}
+
+.admin-dashboard-loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f8fafc;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.admin-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #10b981;
+  border-radius: 50%;
+  animation: admin-spin 1s linear infinite;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.3);
+}
+
+@keyframes admin-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.admin-dashboard-loading-text {
+  color: #64748b;
+  font-size: 15px;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Main Content Area */
+.admin-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  margin-left: 1px;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Header */
+.admin-dashboard-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.admin-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+  background: #ffffff;
+  border-radius: 0;
+}
+
+.admin-dashboard-header .admin-header-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.admin-header-logo-main {
+  color: #10b981;
+  font-weight: 800;
+}
+
+.admin-header-logo-accent {
+  color: #1e293b;
+}
+
+.admin-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.admin-info-text {
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Main Content */
+.admin-dashboard-main {
+  flex: 1;
+  padding: 24px 32px;
+  background: #f8fafc;
+  overflow-y: auto;
+  border-radius: 0;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-dashboard {
+    flex-direction: column;
+  }
+  
+  .admin-header-content {
+    padding: 16px 20px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .admin-dashboard-main {
+    padding: 20px;
+  }
+  
+  .admin-dashboard-header .admin-header-title {
+    font-size: 22px;
+  }
+  
+  .admin-info {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1024px) {
+  .admin-header-content {
+    padding: 18px 24px;
+  }
+  
+  .admin-dashboard-main {
+    padding: 20px 24px;
+  }
+  
+  .admin-dashboard-header .admin-header-title {
+    font-size: 24px;
+  }
+  
+  .admin-info {
+    padding: 6px 12px;
+  }
+}

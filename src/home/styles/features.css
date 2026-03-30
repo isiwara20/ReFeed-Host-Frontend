@@ -1,0 +1,119 @@
+.features {
+  position: relative;
+  background: var(--color-bg-soft);
+  padding: 100px 0 120px;
+}
+
+.features__header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 64px;
+  padding: 0 24px;
+}
+
+.features__tag {
+  display: inline-block;
+  color: var(--color-orange);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.features__title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--color-dark);
+  margin-bottom: 16px;
+  letter-spacing: -0.8px;
+}
+
+.features__subtitle {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+  gap: 22px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.feature-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-green), var(--color-orange));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+
+.feature-card:hover::after {
+  transform: scaleX(1);
+}
+
+.feature-card__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  font-size: 1.5rem;
+}
+
+.feature-card:nth-child(odd) .feature-card__icon {
+  background: var(--color-green-light);
+  color: var(--color-green);
+}
+
+.feature-card:nth-child(even) .feature-card__icon {
+  background: var(--color-orange-light);
+  color: var(--color-orange);
+}
+
+.feature-card__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 10px;
+  letter-spacing: -0.2px;
+}
+
+.feature-card__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.75;
+}
+
+@media (max-width: 600px) {
+  .features__grid {
+    grid-template-columns: 1fr;
+  }
+}

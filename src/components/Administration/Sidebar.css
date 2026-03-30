@@ -1,0 +1,324 @@
+/* Sewni - Professional Sidebar Styles */
+
+.admin-sidebar {
+  width: 360px;
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.04);
+  height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.admin-profile {
+  padding: 28px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  border-radius: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.admin-profile-avatar {
+  flex-shrink: 0;
+}
+
+.admin-profile-info {
+  text-align: center;
+  width: 100%;
+}
+
+.admin-profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ffffff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.admin-avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.admin-profile-name {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.2;
+}
+
+.admin-profile-username {
+  margin: 0 !important;
+  font-size: 14px !important;
+  color: #1f2937 !important;
+  font-weight: 700 !important;
+  margin-top: 2px !important;
+}
+
+.admin-sidebar-nav {
+  flex: 1;
+  padding: 16px 0;
+  overflow: visible;
+}
+
+.admin-nav-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-nav-item {
+  margin: 0 12px 4px 12px;
+  height: 80px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.admin-nav-link {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  color: #64748b;
+  text-decoration: none;
+  border-radius: 12px;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.admin-nav-link:hover {
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  color: #1e293b;
+  border-color: #e2e8f0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.admin-nav-link.active {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  font-weight: 700;
+  border: 1px solid #10b981;
+  box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.3);
+  transform: translateY(-1px);
+}
+
+.admin-nav-icon {
+  margin-right: 12px;
+  font-size: 18px;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.admin-nav-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  height: 100%;
+}
+
+.admin-nav-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+  align-items: flex-start;
+}
+
+.admin-nav-name {
+  display: block;
+  font-weight: 700;
+  color: inherit;
+  font-size: 14px;
+  line-height: 1.2;
+  margin: 0;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.admin-nav-description {
+  display: block;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.1;
+  margin: 2px 0 0 0;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.admin-sidebar-footer {
+  padding: 16px;
+  border-top: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 0;
+}
+
+.admin-logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px 16px;
+  background: #ffffff;
+  color: #ef4444;
+  border: 2px solid #fecaca;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.admin-logout-btn:hover {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+}
+
+.admin-logout-icon {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.admin-logout-text {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .admin-profile {
+    padding: 20px 20px;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .admin-profile-img,
+  .admin-avatar-placeholder {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .admin-avatar-placeholder {
+    font-size: 24px;
+  }
+  
+  .admin-profile-name {
+    font-size: 16px;
+  }
+  
+  .admin-sidebar-nav {
+    padding: 12px 0;
+  }
+  
+  .admin-nav-item {
+    margin: 0 12px 4px 12px;
+    height: 70px;
+  }
+  
+  .admin-nav-link {
+    padding: 10px 16px;
+    font-size: 13px;
+    height: 100%;
+  }
+  
+  .admin-nav-icon {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .admin-nav-name {
+    font-size: 13px;
+  }
+  
+  .admin-nav-description {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .admin-sidebar {
+    width: 320px;
+  }
+  
+  .admin-profile {
+    padding: 22px 20px;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+  
+  .admin-nav-item {
+    margin: 0 12px 4px 12px;
+    height: 75px;
+  }
+  
+  .admin-nav-link {
+    padding: 11px 14px;
+    font-size: 13px;
+    height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .admin-nav-item {
+    margin: 0 12px 4px 12px;
+    height: 65px;
+  }
+  
+  .admin-nav-link {
+    padding: 10px 16px;
+    font-size: 13px;
+    height: 100%;
+  }
+  
+  .admin-nav-name {
+    font-size: 13px;
+  }
+  
+  .admin-nav-description {
+    font-size: 11px;
+  }
+}
