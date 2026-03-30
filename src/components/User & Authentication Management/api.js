@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://refeed-hosting-backend-production.up.railway.app/api";
 
 export const api = {
   register: (data) =>

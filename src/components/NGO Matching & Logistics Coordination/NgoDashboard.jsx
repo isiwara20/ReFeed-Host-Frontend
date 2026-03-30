@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./NgoDashboard.css";
 
-const BASE = "http://localhost:5000/api";
+const BASE = "https://refeed-hosting-backend-production.up.railway.app/api";
 const get  = (url) => fetch(`${BASE}${url}`).then((r) => r.json());
 const post = (url, body) => fetch(`${BASE}${url}`, { method: "POST",   headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }).then((r) => r.json());
 const put  = (url, body) => fetch(`${BASE}${url}`, { method: "PUT",    headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }).then((r) => r.json());
@@ -496,7 +496,7 @@ function DonateModal({ request, ngoUsername, ngoData, onClose, onSuccess }) {
     setStep("paying");
 
     try {
-      const res = await fetch("http://localhost:5000/api/payment/initiate", {
+      const res = await fetch("https://refeed-hosting-backend-production.up.railway.app/api/payment/initiate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

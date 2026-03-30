@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api", // backend
+  baseURL: "https://refeed-hosting-backend-production.up.railway.app/api", // backend
 });
 
 export default API;

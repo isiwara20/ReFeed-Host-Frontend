@@ -1,0 +1,13 @@
+
+
+Files Updated:
+
+client.js
+ - Updated default API base URL
+axios.js
+ - Updated axios instance baseURL
+src/components/User & Authentication Management/api.js - Updated BASE_URL
+src/components/User & Authentication Management/LoginISInew.jsx - Updated BASE_URL
+src/components/NGO Matching & Logistics Coordination/NgoDashboard.jsx - Updated BASE constant and payment endpoint
+src/components/NGO Matching & Logistics Coordination/donationpickupplace.js - Updated fetch URL
+All API calls now point to https://refeed-hosting-backend-production.up.railway.app/api instead of http://localhost:5000/api. Your frontend is ready to communicate with the production backend.

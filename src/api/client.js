@@ -1,5 +1,5 @@
 const API_BASE_URL =
-  process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api";
+  process.env.REACT_APP_API_BASE_URL || "https://refeed-hosting-backend-production.up.railway.app/api";
 
 /**
  * Lightweight API client built on top of fetch.

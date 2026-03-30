@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./AuthStyles.css";
 
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://refeed-hosting-backend-production.up.railway.app/api";
 
 const EyeIcon = ({ open }) => (
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">

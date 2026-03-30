@@ -17,7 +17,7 @@ export default function DonationMap({ donationId }) {
   useEffect(() => {
     async function fetchDonation() {
       try {
-        const res = await fetch(`http://localhost:5000/api/donations-picking/${donationId}`);
+        const res = await fetch(`https://refeed-hosting-backend-production.up.railway.app/api/donations-picking/${donationId}`);
         const data = await res.json();
         setDonation(data);
       } catch (err) {
