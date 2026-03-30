@@ -178,7 +178,7 @@ const AdminRegistration = ({ adminData, setActivePage }) => {
   };
 
   const handleBack = () => {
-    navigate('/admin-dashboard');
+    setActivePage && setActivePage('dashboard');
   };
 
   const handleLogout = () => {
@@ -437,7 +437,13 @@ const AdminRegistration = ({ adminData, setActivePage }) => {
               {/* Submit Error */}
               {errors.submit && (
                 <div className="admin-submit-error">
-                  <div className="admin-error-icon">⚠</div>
+                  <div className="admin-error-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                      <line x1="12" y1="9" x2="12" y2="13"/>
+                      <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                  </div>
                   <div className="admin-error-text">{errors.submit}</div>
                 </div>
               )}
@@ -487,7 +493,12 @@ const AdminRegistration = ({ adminData, setActivePage }) => {
         <div className="admin-registration-right">
           <div className="admin-right-content">
             <div className="admin-right-header">
-              <div className="admin-right-icon">🔐</div>
+              <div className="admin-right-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
               <h2 className="admin-right-title">Admin Access</h2>
               <p className="admin-right-subtitle">
                 Secure system administration with elevated privileges
@@ -496,28 +507,50 @@ const AdminRegistration = ({ adminData, setActivePage }) => {
 
             <div className="admin-features">
               <div className="admin-feature">
-                <div className="admin-feature-icon">👥</div>
+                <div className="admin-feature-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </div>
                 <div className="admin-feature-content">
                   <h3>User Management</h3>
                   <p>Manage users, NGOs, and donators</p>
                 </div>
               </div>
               <div className="admin-feature">
-                <div className="admin-feature-icon">📊</div>
+                <div className="admin-feature-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                  </svg>
+                </div>
                 <div className="admin-feature-content">
                   <h3>Analytics & Reports</h3>
                   <p>Access comprehensive system analytics</p>
                 </div>
               </div>
               <div className="admin-feature">
-                <div className="admin-feature-icon">⚙️</div>
+                <div className="admin-feature-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M12 1v6m0 6v6m9-9h-6m-6 0H3"/>
+                  </svg>
+                </div>
                 <div className="admin-feature-content">
                   <h3>System Settings</h3>
                   <p>Configure platform settings and policies</p>
                 </div>
               </div>
               <div className="admin-feature">
-                <div className="admin-feature-icon">🛡️</div>
+                <div className="admin-feature-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
                 <div className="admin-feature-content">
                   <h3>Security Oversight</h3>
                   <p>Monitor security and compliance</p>
@@ -526,7 +559,12 @@ const AdminRegistration = ({ adminData, setActivePage }) => {
             </div>
 
             <div className="admin-security-note">
-              <div className="admin-security-icon">🔒</div>
+              <div className="admin-security-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
               <div className="admin-security-content">
                 <h4>Security First</h4>
                 <p>Admin accounts have elevated access. Ensure strong passwords and secure handling of credentials.</p>

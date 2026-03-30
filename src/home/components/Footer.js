@@ -99,7 +99,7 @@ const Footer = () => {
           <div className="footer__col-title">Contact</div>
           <div className="footer__contact-item">
             <span className="footer__contact-icon"><IconPin /></span>
-            <span>123 Green Street, Sustainability City</span>
+            <span>Colombo, Sri Lanka</span>
           </div>
           <div className="footer__contact-item">
             <span className="footer__contact-icon"><IconMail /></span>
@@ -107,7 +107,7 @@ const Footer = () => {
           </div>
           <div className="footer__contact-item">
             <span className="footer__contact-icon"><IconPhone /></span>
-            <span>+1 (800) REFEED-1</span>
+            <span>+94 706 125 515</span>
           </div>
         </div>
       </div>

@@ -3,42 +3,36 @@
 import React from 'react';
 import './Sidebar.css';
 
-const Sidebar = ({ activePage, setActivePage, adminData, onLogout }) => {
+const Sidebar = ({ activePage, setActivePage, adminData, onLogout, isOpen }) => {
   const menuItems = [
     {
       id: 'dashboard',
       name: 'Dashboard Overview',
-      icon: '📊',
       description: 'System overview and statistics'
     },
     {
       id: 'verification',
       name: 'User & Organization Verification',
-      icon: '✅',
       description: 'Verify NGOs, donors, and volunteers'
     },
     {
       id: 'donations',
       name: 'Donation Oversight',
-      icon: '🍽️',
       description: 'Monitor and manage donations'
     },
     {
       id: 'complaints',
       name: 'Incident & Complaint Management',
-      icon: '⚠️',
       description: 'Handle complaints and abuse reports'
     },
     {
       id: 'analytics',
       name: 'Analytics & Impact Reports',
-      icon: '📈',
       description: 'View comprehensive analytics and reports'
     },
     {
       id: 'audit-logs',
       name: 'System Audit Logs',
-      icon: '📋',
       description: 'View admin activity history'
     }
   ];
@@ -48,7 +42,7 @@ const Sidebar = ({ activePage, setActivePage, adminData, onLogout }) => {
   };
 
   return (
-    <div className="admin-sidebar">
+    <div className={`admin-sidebar ${isOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
       <div className="admin-profile">
         <div className="admin-profile-avatar" onClick={() => setActivePage('profile')} style={{ cursor: 'pointer' }}>
           {adminData?.profilePicture ? (
@@ -80,7 +74,6 @@ const Sidebar = ({ activePage, setActivePage, adminData, onLogout }) => {
                 className={`admin-nav-link ${activePage === item.id ? 'active' : ''}`}
                 onClick={() => handleMenuClick(item.id)}
               >
-                <span className="admin-nav-icon">{item.icon}</span>
                 <div className="admin-nav-content">
                   <div className="admin-nav-text">
                     <span className="admin-nav-name">{item.name}</span>
@@ -97,7 +90,13 @@ const Sidebar = ({ activePage, setActivePage, adminData, onLogout }) => {
 
       <div className="admin-sidebar-footer">
         <button className="admin-logout-btn" onClick={onLogout}>
-          <span className="admin-logout-icon">🚪</span>
+          <span className="admin-logout-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16,17 21,12 16,7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </span>
           <span className="admin-logout-text">Logout</span>
         </button>
       </div>

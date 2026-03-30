@@ -23,6 +23,7 @@ const AdminDashboard = () => {
   const [adminData, setAdminData] = useState(null);
   const [dataLoading, setDataLoading] = useState(true);
   const [navigationHistory, setNavigationHistory] = useState(['dashboard']);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const fetchAdminData = useCallback(async () => {
     try {
@@ -148,6 +149,47 @@ const AdminDashboard = () => {
     }
   };
 
+  useEffect(() => {
+    // Prevent rubber band scrolling
+    const preventOverscroll = (e) => {
+      const { scrollTop, scrollHeight, clientHeight } = e.target;
+      
+      // Prevent scrolling up when at top
+      if (scrollTop === 0 && e.deltaY < 0) {
+        e.preventDefault();
+      }
+      
+      // Prevent scrolling down when at bottom
+      if (scrollTop + clientHeight >= scrollHeight && e.deltaY > 0) {
+        e.preventDefault();
+      }
+    };
+
+    const mainContent = document.querySelector('.admin-dashboard-main');
+    const sidebarNav = document.querySelector('.admin-sidebar-nav');
+    
+    if (mainContent) {
+      mainContent.addEventListener('wheel', preventOverscroll, { passive: false });
+      mainContent.addEventListener('touchmove', preventOverscroll, { passive: false });
+    }
+    
+    if (sidebarNav) {
+      sidebarNav.addEventListener('wheel', preventOverscroll, { passive: false });
+      sidebarNav.addEventListener('touchmove', preventOverscroll, { passive: false });
+    }
+
+    return () => {
+      if (mainContent) {
+        mainContent.removeEventListener('wheel', preventOverscroll);
+        mainContent.removeEventListener('touchmove', preventOverscroll);
+      }
+      if (sidebarNav) {
+        sidebarNav.removeEventListener('wheel', preventOverscroll);
+        sidebarNav.removeEventListener('touchmove', preventOverscroll);
+      }
+    };
+  }, []);
+
   // Listen for browser back button
   useEffect(() => {
     const handlePopState = (event) => {
@@ -198,10 +240,22 @@ const AdminDashboard = () => {
         setActivePage={handlePageChange} 
         adminData={adminData}
         onLogout={handleLogout}
+        isOpen={sidebarOpen}
       />
-      <div className="admin-main-content">
+      <div className={`admin-main-content ${sidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
         <header className="admin-dashboard-header">
           <div className="admin-header-content">
+            <button 
+              className="admin-sidebar-toggle"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              aria-label="Toggle sidebar"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+            </button>
             <div className="admin-header-title">
               <span className="admin-header-logo-main">Re</span><span className="admin-header-logo-accent">Feed Administration</span>
             </div>

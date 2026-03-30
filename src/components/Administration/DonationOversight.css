@@ -138,11 +138,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   font-size: 28px;
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
   transition: transform 0.2s ease;
+}
+
+.donation-stat-icon svg {
+  width: 32px;
+  height: 32px;
+  color: white;
 }
 
 .donation-stat-value {

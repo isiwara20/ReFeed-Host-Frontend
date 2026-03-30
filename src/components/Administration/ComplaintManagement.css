@@ -93,11 +93,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   font-size: 28px;
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
   transition: transform 0.2s ease;
+}
+
+.admin-complaint-stat-icon svg {
+  width: 32px;
+  height: 32px;
+  color: white;
 }
 
 .admin-complaint-stat-value {
@@ -220,6 +227,16 @@
 
 .admin-complaint-category-icon {
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-complaint-category-icon svg {
+  width: 18px;
+  height: 18px;
+  color: inherit;
 }
 
 .admin-complaint-category-text {
@@ -357,6 +374,16 @@
 .admin-empty-icon {
   font-size: 48px;
   margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cbd5e1;
+}
+
+.admin-empty-icon svg {
+  width: 48px;
+  height: 48px;
+  color: #cbd5e1;
 }
 
 .admin-empty-title {

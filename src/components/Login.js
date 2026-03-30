@@ -61,6 +61,12 @@ const Login = () => {
       {/* Right panel — form */}
       <div className="login-right">
         <div className="login-form-wrap">
+          <div className="login-mobile-header">
+            <a href="/" className="login-mobile-logo">Re<span>Feed</span></a>
+            <p className="login-mobile-tagline">
+              Connecting surplus food with communities in need.
+            </p>
+          </div>
           <h1 className="login-title">Welcome back</h1>
           <p className="login-subtitle">Sign in to your ReFeed account</p>
 

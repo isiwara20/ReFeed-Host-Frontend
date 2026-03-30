@@ -186,7 +186,7 @@ function OtpOverlay({ phone, onVerified, onClose }) {
             Sending OTP…
           </div>
         )}
-        {success && !sending && <div className="alert alert-success" style={{ marginBottom: 16 }}>✅ {success}</div>}
+        {success && !sending && <div className="alert alert-success" style={{ marginBottom: 16 }}>{success}</div>}
         {error   && <div className="alert alert-error"   style={{ marginBottom: 16 }}>⚠️ {error}</div>}
 
         {/* OTP input */}
@@ -436,11 +436,11 @@ export default function Register() {
       <div className="auth-split-page">
         {/* ── Left: form ── */}
         <div className="auth-split-left">
-          <div className="auth-brand">
+          <Link to="/" className="auth-brand">
             <span className="brand-re">Re</span>
             <span className="brand-feed">Feed</span>
             <span className="brand-dot" />
-          </div>
+          </Link>
 
           <h1 className="auth-title">Create your account</h1>
           <p className="auth-subtitle">Join ReFeed and start making a difference today.</p>
@@ -525,7 +525,7 @@ export default function Register() {
                   </button>
                 ) : (
                   <span className="wa-verified-tag">
-                    <span>✅</span> Verified
+                    <span>Verified</span>
                   </span>
                 )}
               </div>

@@ -70,11 +70,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   font-size: 28px;
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
   transition: transform 0.2s ease;
+}
+
+.admin-stat-icon svg {
+  width: 32px;
+  height: 32px;
+  color: white;
 }
 
 .admin-stat-value {
@@ -300,6 +307,16 @@
 .admin-action-icon {
   margin-right: 12px;
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-action-icon svg {
+  width: 20px;
+  height: 20px;
+  color: #1e293b;
 }
 
 .admin-action-text {

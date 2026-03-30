@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/about.css';
+import V3 from '../components/video/V3.mp4';
 
 const About = () => {
   return (
@@ -41,14 +42,17 @@ const About = () => {
 
         {/* Right: Video */}
         <div className="about__video-wrap">
-          <div className="about__video-placeholder">
-            <div className="about__play-btn">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#ffffff">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-            <span className="about__video-label">Watch how ReFeed works</span>
-          </div>
+          <video 
+            width="100%" 
+            height="100%" 
+            autoPlay
+            muted
+            loop
+            style={{ objectFit: 'cover', borderRadius: '20px' }}
+          >
+            <source src={V3} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
 

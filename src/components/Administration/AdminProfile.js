@@ -256,28 +256,48 @@ const AdminProfile = ({ adminData, setActivePage, onProfileUpdate }) => {
 
               <div className="admin-features">
                 <div className="admin-feature">
-                  <div className="admin-feature-icon">🔐</div>
+                  <div className="admin-feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                  </div>
                   <div className="admin-feature-content">
                     <h3>Account Security</h3>
                     <p>Your credentials and access permissions</p>
                   </div>
                 </div>
                 <div className="admin-feature">
-                  <div className="admin-feature-icon">📊</div>
+                  <div className="admin-feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <line x1="18" y1="20" x2="18" y2="10"/>
+                      <line x1="12" y1="20" x2="12" y2="4"/>
+                      <line x1="6" y1="20" x2="6" y2="14"/>
+                    </svg>
+                  </div>
                   <div className="admin-feature-content">
                     <h3>System Analytics</h3>
                     <p>Access to comprehensive dashboard data</p>
                   </div>
                 </div>
                 <div className="admin-feature">
-                  <div className="admin-feature-icon">⚙️</div>
+                  <div className="admin-feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="3"/>
+                      <path d="M12 1v6m0 6v6m9-9h-6m-6 0H3"/>
+                    </svg>
+                  </div>
                   <div className="admin-feature-content">
                     <h3>Admin Controls</h3>
                     <p>Full system management capabilities</p>
                   </div>
                 </div>
                 <div className="admin-feature">
-                  <div className="admin-feature-icon">🛡️</div>
+                  <div className="admin-feature-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                  </div>
                   <div className="admin-feature-content">
                     <h3>Privacy Settings</h3>
                     <p>Control your profile visibility</p>
@@ -286,7 +306,12 @@ const AdminProfile = ({ adminData, setActivePage, onProfileUpdate }) => {
               </div>
 
               <div className="admin-security-note">
-                <div className="admin-security-icon">🔒</div>
+                <div className="admin-security-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  </svg>
+                </div>
                 <div className="admin-security-content">
                   <h4>Profile Security</h4>
                   <p>Keep your profile information updated and secure. Regular maintenance ensures optimal system access.</p>
@@ -577,7 +602,13 @@ const AdminProfile = ({ adminData, setActivePage, onProfileUpdate }) => {
               {/* Submit Error */}
               {errors.submit && (
                 <div className="admin-submit-error">
-                  <div className="admin-error-icon">⚠</div>
+                  <div className="admin-error-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                      <line x1="12" y1="9" x2="12" y2="13"/>
+                      <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                  </div>
                   <div className="admin-error-text">{errors.submit}</div>
                 </div>
               )}

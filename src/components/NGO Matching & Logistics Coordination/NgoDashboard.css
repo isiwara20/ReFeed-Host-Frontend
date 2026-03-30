@@ -124,7 +124,7 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; background: var(--bg); colo
 }
 
 /* ─── MAIN ─── */
-.dash-main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+.dash-main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; min-height: 100vh; padding-bottom: 60px; }
 
 .dash-header {
   height: var(--header-h);
@@ -134,8 +134,30 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; background: var(--bg); colo
   padding: 0 28px;
   position: sticky; top: 0; z-index: 50;
 }
+
+.dash-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .dash-header-title { font-size: 16px; font-weight: 700; color: var(--text); }
 .dash-header-right { display: flex; align-items: center; gap: 10px; }
+
+.dash-sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text);
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.dash-sidebar-toggle:hover {
+  background: var(--bg);
+}
 
 .header-badge {
   padding: 4px 10px; border-radius: 20px;
@@ -173,6 +195,8 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; background: var(--bg); colo
   display: flex; align-items: center; justify-content: space-between;
   font-size: 12px; color: var(--muted);
   background: var(--header-bg);
+  position: fixed; bottom: 0; left: var(--sidebar-w); right: 0;
+  z-index: 40;
 }
 
 /* ─── PAGE TITLE ─── */
@@ -205,6 +229,7 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; background: var(--bg); colo
   background: var(--card); border-radius: var(--radius);
   border: 1px solid var(--border); padding: 20px;
   display: flex; align-items: center; gap: 16px;
+  box-shadow: none;
 }
 .stat-icon-wrap {
   width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
@@ -263,7 +288,7 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; background: var(--bg); colo
 .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none !important; }
 
 /* ─── TABLE ─── */
-.table-wrap { overflow-x: auto; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 th { text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 1px solid var(--border); background: var(--bg); }
 td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--text-2); vertical-align: middle; }
@@ -428,10 +453,116 @@ tr:hover td { background: var(--bg); }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
-  .dash-sidebar { transform: translateX(-100%); }
+  .dash-sidebar { 
+    transform: translateX(-100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 200;
+    transition: transform 0.3s ease;
+  }
+
+  .dash-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .dash-sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 150;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .dash-sidebar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .dash-main    { margin-left: 0; }
+  .dash-content { padding: 20px 16px; }
   .form-grid, .form-grid-3, .delivery-options { grid-template-columns: 1fr; }
   .stat-grid    { grid-template-columns: 1fr 1fr; }
+
+  .dash-footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    left: 0;
+    right: 0;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -16px;
+    padding: 0 16px;
+  }
+
+  table {
+    min-width: 600px;
+    font-size: 12px;
+  }
+
+  table th, table td {
+    padding: 8px 10px;
+  }
+
+  .table-toolbar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .filter-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .filter-search,
+  .filter-select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .dash-content { padding: 16px 12px; }
+
+  table {
+    min-width: 800px;
+    font-size: 11px;
+  }
+
+  table th {
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  table td {
+    padding: 6px 8px;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+
+  .table-wrap {
+    margin: 0 -12px;
+    padding: 0 12px;
+  }
+
+  .btn-sm {
+    padding: 4px 8px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .page-title {
+    font-size: 18px;
+  }
+
+  .page-subtitle {
+    font-size: 12px;
+  }
 }
 
 /* ─── DARK THEME OVERRIDES ─── */

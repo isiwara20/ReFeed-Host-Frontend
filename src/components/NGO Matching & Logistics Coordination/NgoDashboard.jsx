@@ -190,61 +190,88 @@ function VerificationPage({ username, verifyStatus, verifyData, onRefresh, toast
       {(verifyStatus === "none" || verifyStatus === "REJECTED") && (
         <div className="card">
           <div className="card-title">Verification Form</div>
-          <form onSubmit={handleSubmit}>
-            <div style={{ display:"flex", flexDirection:"column", gap:16 }}>
-              <div className="form-grid">
-                <div className="field">
-                  <label className="field-label">Registration Number *</label>
-                  <input className="field-input" placeholder="NGO/2024/001" value={form.registrationNumber} onChange={set("registrationNumber")} required />
-                </div>
-                <div className="field">
-                  <label className="field-label">Registration Authority</label>
-                  <input className="field-input" placeholder="Ministry of Social Services" value={form.registrationAuthority} onChange={set("registrationAuthority")} />
-                </div>
+          {verifyStatus === "REJECTED" ? (
+            <div style={{ padding: "24px", textAlign: "center", background: "#fef2f2", borderRadius: "8px", border: "1px solid #fca5a5" }}>
+              <div style={{ fontSize: "48px", marginBottom: "16px" }}>⚠️</div>
+              <div style={{ fontSize: "18px", fontWeight: "700", color: "#dc2626", marginBottom: "12px" }}>Verification Rejected</div>
+              <div style={{ fontSize: "14px", color: "#7f1d1d", marginBottom: "24px", lineHeight: "1.6" }}>
+                {verifyData?.rejectionReason || "Your verification has been rejected. Please review the reason and contact our support team for assistance."}
               </div>
-              <div className="field">
-                <label className="field-label">Document URL</label>
-                <input className="field-input" placeholder="https://drive.google.com/..." value={form.registrationDocumentUrl} onChange={set("registrationDocumentUrl")} />
-              </div>
-              <div className="field">
-                <label className="field-label">Official Address *</label>
-                <input className="field-input" placeholder="123 Main St, Colombo" value={form.officialAddress} onChange={set("officialAddress")} required />
-              </div>
-              <div className="form-grid">
-                <div className="field">
-                  <label className="field-label">District</label>
-                  <input className="field-input" placeholder="Colombo" value={form.district} onChange={set("district")} />
-                </div>
-                <div className="field">
-                  <label className="field-label">Province</label>
-                  <select className="field-select" value={form.province} onChange={set("province")}>
-                    <option value="">Select Province</option>
-                    {PROVINCES.map(p => <option key={p} value={p}>{p}</option>)}
-                  </select>
+              <div style={{ background: "#fff", padding: "20px", borderRadius: "8px", marginBottom: "24px", textAlign: "left", border: "1px solid #fecaca" }}>
+                <div style={{ fontSize: "13px", fontWeight: "600", color: "#991b1b", marginBottom: "12px" }}>📋 Rejection Details:</div>
+                <div style={{ fontSize: "13px", color: "#7f1d1d", lineHeight: "1.8" }}>
+                  {verifyData?.rejectionReason || "No specific reason provided. Please contact support for more information."}
                 </div>
               </div>
-              <div className="form-grid">
-                <div className="field">
-                  <label className="field-label">Contact Person Name *</label>
-                  <input className="field-input" placeholder="Full Name" value={form.contactPersonName} onChange={set("contactPersonName")} required />
-                </div>
-                <div className="field">
-                  <label className="field-label">NIC Number</label>
-                  <input className="field-input" placeholder="199012345678" value={form.contactPersonNIC} onChange={set("contactPersonNIC")} />
+              <div style={{ background: "#f3f4f6", padding: "20px", borderRadius: "8px", marginBottom: "24px" }}>
+                <div style={{ fontSize: "13px", fontWeight: "600", color: "#374151", marginBottom: "12px" }}>📞 Contact Support:</div>
+                <div style={{ fontSize: "13px", color: "#4b5563", lineHeight: "1.8" }}>
+                  <div>📧 Email: <strong>support@refeed.com</strong></div>
+                  <div>📱 WhatsApp: <strong>+94 76 123 4567</strong></div>
+                  <div>☎️ Phone: <strong>+94 11 234 5678</strong></div>
                 </div>
               </div>
-              <div className="field">
-                <label className="field-label">Contact Person Role</label>
-                <input className="field-input" placeholder="Director / Manager" value={form.contactPersonRole} onChange={set("contactPersonRole")} />
-              </div>
-              <div>
-                <button type="submit" className="btn btn-green" disabled={loading}>
-                  {loading && <span className="spin" />}
-                  {loading ? "Submitting…" : "Submit Verification"}
-                </button>
-              </div>
+              <button className="btn btn-outline" onClick={() => window.location.href = "mailto:support@refeed.com"}>
+                Contact Support
+              </button>
             </div>
-          </form>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              <div style={{ display:"flex", flexDirection:"column", gap:16 }}>
+                <div className="form-grid">
+                  <div className="field">
+                    <label className="field-label">Registration Number *</label>
+                    <input className="field-input" placeholder="NGO/2024/001" value={form.registrationNumber} onChange={set("registrationNumber")} required />
+                  </div>
+                  <div className="field">
+                    <label className="field-label">Registration Authority</label>
+                    <input className="field-input" placeholder="Ministry of Social Services" value={form.registrationAuthority} onChange={set("registrationAuthority")} />
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="field-label">Document URL</label>
+                  <input className="field-input" placeholder="https://drive.google.com/..." value={form.registrationDocumentUrl} onChange={set("registrationDocumentUrl")} />
+                </div>
+                <div className="field">
+                  <label className="field-label">Official Address *</label>
+                  <input className="field-input" placeholder="123 Main St, Colombo" value={form.officialAddress} onChange={set("officialAddress")} required />
+                </div>
+                <div className="form-grid">
+                  <div className="field">
+                    <label className="field-label">District</label>
+                    <input className="field-input" placeholder="Colombo" value={form.district} onChange={set("district")} />
+                  </div>
+                  <div className="field">
+                    <label className="field-label">Province</label>
+                    <select className="field-select" value={form.province} onChange={set("province")}>
+                      <option value="">Select Province</option>
+                      {PROVINCES.map(p => <option key={p} value={p}>{p}</option>)}
+                    </select>
+                  </div>
+                </div>
+                <div className="form-grid">
+                  <div className="field">
+                    <label className="field-label">Contact Person Name *</label>
+                    <input className="field-input" placeholder="Full Name" value={form.contactPersonName} onChange={set("contactPersonName")} required />
+                  </div>
+                  <div className="field">
+                    <label className="field-label">NIC Number</label>
+                    <input className="field-input" placeholder="199012345678" value={form.contactPersonNIC} onChange={set("contactPersonNIC")} />
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="field-label">Contact Person Role</label>
+                  <input className="field-input" placeholder="Director / Manager" value={form.contactPersonRole} onChange={set("contactPersonRole")} />
+                </div>
+                <div>
+                  <button type="submit" className="btn btn-green" disabled={loading}>
+                    {loading && <span className="spin" />}
+                    {loading ? "Submitting…" : "Submit Verification"}
+                  </button>
+                </div>
+              </div>
+            </form>
+          )}
         </div>
       )}
     </div>
@@ -326,7 +353,6 @@ function FoodRequestsPage({ username, ngoData, verifyStatus, toast }) {
             <option value="all">All Status</option>
             <option value="pending">Pending</option>
             <option value="matched">Matched</option>
-            <option value="completed">Completed</option>
           </select>
           <select className="filter-select" value={filterCategory} onChange={e => setFilterCategory(e.target.value)}>
             <option value="all">All Categories</option>
@@ -1079,7 +1105,7 @@ function OrdersPage({ username, toast }) {
                     <td>{o.quantity?.amount} {o.quantity?.unit}</td>
                     <td>{o.donorUsername}</td>
                     <td style={{ textTransform:"capitalize" }}>{o.deliveryType}</td>
-                    <td style={{ maxWidth:160, overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{o.deliveryAddress || "—"}</td>
+                    <td style={{ maxWidth:160, wordWrap:"break-word", whiteSpace:"normal" }}>{o.deliveryAddress || "—"}</td>
                     <td><StatusPill status={o.status} /></td>
                     <td>{new Date(o.createdAt).toLocaleDateString()}</td>
                     <td>
@@ -1249,6 +1275,7 @@ export default function NgoDashboard() {
   const [orders, setOrders]         = useState([]);
   const [theme, setTheme]           = useState(getTheme());
   const [avatar, setAvatar]         = useState(getAvatar());
+  const [showSidebar, setShowSidebar] = useState(false);
   const { toasts, add: toast }      = useToast();
 
   // sync avatar from localStorage when profile updates
@@ -1338,9 +1365,17 @@ export default function NgoDashboard() {
         </div>
       )}
 
+      {/* ── Sidebar Backdrop (Mobile) ── */}
+      {showSidebar && (
+        <div 
+          className="dash-sidebar-backdrop" 
+          onClick={() => setShowSidebar(false)}
+        />
+      )}
+
       {/* ── Sidebar ── */}
-      <aside className="dash-sidebar">
-        <div className="sidebar-brand">
+      <aside className={`dash-sidebar ${showSidebar ? "open" : ""}`}>
+        <div className="sidebar-brand" onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
           <span className="brand-re">Re</span>
           <span className="brand-feed">Feed</span>
           <span className="brand-dot" />
@@ -1363,7 +1398,7 @@ export default function NgoDashboard() {
           <div className="nav-section-label">Main Menu</div>
           {navItems.map((item) => (
             <button key={item.id} className={`nav-item ${activePage === item.id ? "active" : ""}`}
-              onClick={() => setActivePage(item.id)}>
+              onClick={() => { setActivePage(item.id); setShowSidebar(false); }}>
               <span className="nav-icon">{item.icon}</span>
               {item.label}
             </button>
@@ -1379,7 +1414,16 @@ export default function NgoDashboard() {
       {/* ── Main ── */}
       <main className="dash-main">
         <header className="dash-header">
-          <span className="dash-header-title">{pageTitles[activePage]}</span>
+          <div className="dash-header-left">
+            <button className="dash-sidebar-toggle" onClick={() => setShowSidebar(!showSidebar)} title="Toggle sidebar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+            </button>
+            <span className="dash-header-title">{pageTitles[activePage]}</span>
+          </div>
           <div className="dash-header-right">
             <span className={`header-badge ${verifyBadge.cls}`}>{verifyBadge.label}</span>
             <button className="theme-toggle" onClick={() => setTheme(t => t === "light" ? "dark" : "light")} title="Toggle theme">

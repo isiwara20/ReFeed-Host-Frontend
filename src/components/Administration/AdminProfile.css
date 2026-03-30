@@ -287,6 +287,16 @@
   font-size: 20px;
   flex-shrink: 0;
   margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+}
+
+.admin-feature-icon svg {
+  width: 20px;
+  height: 20px;
+  color: white;
 }
 
 .admin-feature-content h3 {
@@ -316,6 +326,16 @@
 .admin-security-icon {
   font-size: 24px;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+}
+
+.admin-security-icon svg {
+  width: 24px;
+  height: 24px;
+  color: white;
 }
 
 .admin-security-content h4 {
@@ -746,6 +766,16 @@
 
 .admin-error-icon {
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-error-icon svg {
+  width: 16px;
+  height: 16px;
+  color: #ef4444;
 }
 
 .admin-error-text {

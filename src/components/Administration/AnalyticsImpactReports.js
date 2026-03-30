@@ -337,7 +337,7 @@ const AnalyticsImpactReports = ({ adminData, setActivePage }) => {
             </select>
           </div>
           <button className="analytics-pdf-btn" onClick={downloadPDFReport}>
-            <span className="analytics-pdf-icon">📄</span>
+            {/* <span className="analytics-pdf-icon">📄</span> */}
             Download PDF Report
           </button>
         </div>
@@ -348,7 +348,14 @@ const AnalyticsImpactReports = ({ adminData, setActivePage }) => {
         <div className="analytics-metric-card">
           <div className="analytics-metric-header">
             <div className="analytics-metric-title">Total Users</div>
-            <div className="analytics-metric-icon">👥</div>
+            <div className="analytics-metric-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
           </div>
           <div className="analytics-metric-value">
             {formatNumber((analyticsData?.platformSummary?.totalNgos || 0) + 
@@ -367,7 +374,13 @@ const AnalyticsImpactReports = ({ adminData, setActivePage }) => {
         <div className="analytics-metric-card">
           <div className="analytics-metric-header">
             <div className="analytics-metric-title">Total Donations</div>
-            <div className="analytics-metric-icon">📦</div>
+            <div className="analytics-metric-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27,6.96 12,12.01 20.73,6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </div>
           </div>
           <div className="analytics-metric-value">
             {formatNumber(analyticsData?.fullReport?.donationAnalytics?.totalDonations || 0)}
@@ -385,7 +398,13 @@ const AnalyticsImpactReports = ({ adminData, setActivePage }) => {
         <div className="analytics-metric-card">
           <div className="analytics-metric-header">
             <div className="analytics-metric-title">Complaint Resolution</div>
-            <div className="analytics-metric-icon">⚠️</div>
+            <div className="analytics-metric-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
           </div>
           <div className="analytics-metric-value">
             {calculatePercentage(
@@ -406,7 +425,11 @@ const AnalyticsImpactReports = ({ adminData, setActivePage }) => {
         <div className="analytics-metric-card">
           <div className="analytics-metric-header">
             <div className="analytics-metric-title">System Health</div>
-            <div className="analytics-metric-icon">💚</div>
+            <div className="analytics-metric-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
           </div>
           <div className="analytics-metric-value">98%</div>
           <div className="analytics-metric-breakdown">
@@ -534,7 +557,13 @@ const AnalyticsImpactReports = ({ adminData, setActivePage }) => {
         </div>
           <div className="analytics-impact-grid">
           <div className="analytics-impact-item">
-            <div className="analytics-impact-icon">🍽️</div>
+            <div className="analytics-impact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                <path d="M2 8h16"/>
+                <path d="M4 16v-6a6 6 0 0 1 12 0v6"/>
+              </svg>
+            </div>
             <div className="analytics-impact-content">
               <div className="analytics-impact-value">
                 {formatNumber(Math.max(analyticsData?.fullReport?.donationAnalytics?.totalQuantity || 0, 1250))}
@@ -543,7 +572,12 @@ const AnalyticsImpactReports = ({ adminData, setActivePage }) => {
             </div>
           </div>
           <div className="analytics-impact-item">
-            <div className="analytics-impact-icon">♻️</div>
+            <div className="analytics-impact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/>
+                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+              </svg>
+            </div>
             <div className="analytics-impact-content">
               <div className="analytics-impact-value">
                 {formatNumber(Math.round(Math.max(analyticsData?.fullReport?.donationAnalytics?.totalQuantity || 0, 1250) * 2.5))}
@@ -552,7 +586,14 @@ const AnalyticsImpactReports = ({ adminData, setActivePage }) => {
             </div>
           </div>
           <div className="analytics-impact-item">
-            <div className="analytics-impact-icon">🤝</div>
+            <div className="analytics-impact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="8.5" cy="7" r="4"/>
+                <line x1="20" y1="8" x2="20" y2="14"/>
+                <line x1="23" y1="11" x2="17" y2="11"/>
+              </svg>
+            </div>
             <div className="analytics-impact-content">
               <div className="analytics-impact-value">
                 {formatNumber(analyticsData?.platformSummary?.totalNgos || 0)}
@@ -561,7 +602,13 @@ const AnalyticsImpactReports = ({ adminData, setActivePage }) => {
             </div>
           </div>
           <div className="analytics-impact-item">
-            <div className="analytics-impact-icon">📈</div>
+            <div className="analytics-impact-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+            </div>
             <div className="analytics-impact-content">
               <div className="analytics-impact-value">87%</div>
               <div className="analytics-impact-label">Efficiency Rate</div>

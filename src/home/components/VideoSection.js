@@ -1,4 +1,6 @@
 import React from 'react';
+import V1 from '../components/video/V1.mp4';
+import V2 from '../components/video/V2.mp4';
 
 const styles = {
   section: {
@@ -12,6 +14,15 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     gap: '72px',
+    alignItems: 'center',
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '0 24px',
+  },
+  innerMobile: {
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    gap: '40px',
     alignItems: 'center',
     maxWidth: '1200px',
     margin: '0 auto',
@@ -108,37 +119,106 @@ const styles = {
 };
 
 const VideoSection = () => {
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 768);
+
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <section style={styles.section} id="video">
-      <div style={styles.inner}>
+      {/* First Video Section */}
+      <div style={isMobile ? styles.innerMobile : styles.inner}>
+        {/* Text side first on mobile */}
+        {isMobile && (
+          <div>
+            <span style={styles.tag}>See It Live</span>
+            <h2 style={styles.title}>
+              From Surplus to Smiles<br />in Minutes
+            </h2>
+            <p style={styles.desc}>
+              Watch how a restaurant posts leftover food, gets matched with a local NGO,
+              and completes a verified pickup — all within a single platform.
+            </p>
+            <ul style={styles.list}>
+              {[
+                'Post surplus food in under 60 seconds',
+                'Automatic NGO matching by proximity',
+                'QR code generated for secure handoff',
+                'Real-time status updates via WhatsApp',
+              ].map((item, i) => (
+                <li key={i} style={styles.listItem}>
+                  <span style={styles.dot} />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         {/* Video side */}
         <div style={styles.videoWrap}>
-          <div style={styles.videoPlaceholder}>
-            <div style={styles.playBtn}>
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="#ffffff">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-            <span style={styles.videoLabel}>ReFeed in Action</span>
-          </div>
+          <video 
+            width="100%" 
+            height="100%" 
+            autoPlay
+            muted
+            loop
+            style={{ objectFit: 'cover' }}
+          >
+            <source src={V1} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
 
+        {/* Text side on desktop */}
+        {!isMobile && (
+          <div>
+            <span style={styles.tag}>See It Live</span>
+            <h2 style={styles.title}>
+              From Surplus to Smiles<br />in Minutes
+            </h2>
+            <p style={styles.desc}>
+              Watch how a restaurant posts leftover food, gets matched with a local NGO,
+              and completes a verified pickup — all within a single platform.
+            </p>
+            <ul style={styles.list}>
+              {[
+                'Post surplus food in under 60 seconds',
+                'Automatic NGO matching by proximity',
+                'QR code generated for secure handoff',
+                'Real-time status updates via WhatsApp',
+              ].map((item, i) => (
+                <li key={i} style={styles.listItem}>
+                  <span style={styles.dot} />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      {/* Second Video Section */}
+      <div style={{ ...( isMobile ? styles.innerMobile : styles.inner), marginTop: '80px' }}>
         {/* Text side */}
         <div>
-          <span style={styles.tag}>See It Live</span>
+          <span style={styles.tag}>Impact Stories</span>
           <h2 style={styles.title}>
-            From Surplus to Smiles<br />in Minutes
+            NGOs Empowered,<br />Communities Fed
           </h2>
           <p style={styles.desc}>
-            Watch how a restaurant posts leftover food, gets matched with a local NGO,
-            and completes a verified pickup — all within a single platform.
+            Discover how NGOs use ReFeed to streamline food collection, verify donations,
+            and maximize their impact on food-insecure communities.
           </p>
           <ul style={styles.list}>
             {[
-              'Post surplus food in under 60 seconds',
-              'Automatic NGO matching by proximity',
-              'QR code generated for secure handoff',
-              'Real-time status updates via WhatsApp',
+              'Receive verified donations instantly',
+              'Track pickups with live GPS mapping',
+              'Generate impact reports automatically',
+              'Connect with multiple food sources',
             ].map((item, i) => (
               <li key={i} style={styles.listItem}>
                 <span style={styles.dot} />
@@ -146,6 +226,21 @@ const VideoSection = () => {
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* Video side */}
+        <div style={styles.videoWrap}>
+          <video 
+            width="100%" 
+            height="100%" 
+            autoPlay
+            muted
+            loop
+            style={{ objectFit: 'cover' }}
+          >
+            <source src={V2} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </section>

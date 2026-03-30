@@ -25,11 +25,12 @@
 }
 
 .footer__brand-desc {
-  color: #6b7280;
+  color: #d1d5db;
   font-size: 0.9rem;
   line-height: 1.75;
   margin-bottom: 24px;
   max-width: 280px;
+  font-weight: 500;
 }
 
 .footer__socials {
@@ -41,12 +42,12 @@
   width: 38px;
   height: 38px;
   border-radius: 10px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6b7280;
+  color: #d1d5db;
   font-size: 0.95rem;
   font-weight: 700;
   transition: background var(--transition), color var(--transition), border-color var(--transition);
@@ -75,9 +76,10 @@
 }
 
 .footer__links a {
-  color: #6b7280;
+  color: #d1d5db;
   font-size: 0.9rem;
   transition: color var(--transition);
+  font-weight: 500;
 }
 
 .footer__links a:hover {
@@ -88,10 +90,11 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  color: #6b7280;
+  color: #d1d5db;
   font-size: 0.9rem;
   margin-bottom: 14px;
   line-height: 1.5;
+  font-weight: 500;
 }
 
 .footer__contact-icon {
@@ -115,8 +118,9 @@
 }
 
 .footer__copy {
-  color: #4b5563;
+  color: #9ca3af;
   font-size: 0.85rem;
+  font-weight: 500;
 }
 
 .footer__copy span {
@@ -129,9 +133,10 @@
 }
 
 .footer__bottom-links a {
-  color: #4b5563;
+  color: #9ca3af;
   font-size: 0.85rem;
   transition: color var(--transition);
+  font-weight: 500;
 }
 
 .footer__bottom-links a:hover {

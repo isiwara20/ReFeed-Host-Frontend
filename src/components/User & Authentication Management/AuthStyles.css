@@ -54,7 +54,7 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; }
   height: 100vh;
   position: sticky;
   top: 0;
-  background: linear-gradient(145deg, #052e16 0%, #14532d 40%, #166534 70%, #15803d 100%);
+  background: linear-gradient(145deg, rgba(5, 46, 22, 0.4), rgba(20, 83, 45, 0.4), rgba(22, 101, 52, 0.4), rgba(21, 128, 61, 0.4)), url('./ngggo.jpg') center/cover no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,13 +105,15 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; }
   font-weight: 800;
   margin-bottom: 12px;
   line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .right-subtitle {
   font-size: 15px;
-  color: rgba(255,255,255,0.75);
+  color: #ffffff;
   line-height: 1.6;
   margin-bottom: 36px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 .right-stats {
@@ -121,8 +123,8 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; }
 }
 
 .stat-item {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255,255,255,0.25);
   border-radius: 12px;
   padding: 16px 20px;
   backdrop-filter: blur(8px);
@@ -132,13 +134,15 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; }
   font-size: 22px;
   font-weight: 800;
   color: #86efac;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .stat-label {
   font-size: 11px;
-  color: rgba(255,255,255,0.65);
+  color: #ffffff;
   margin-top: 2px;
   font-weight: 500;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 /* ─────────────────────────────────────────
@@ -177,6 +181,13 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; }
   align-items: center;
   gap: 4px;
   margin-bottom: 32px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.auth-brand:hover {
+  opacity: 0.8;
 }
 
 .brand-re {
@@ -466,9 +477,11 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; }
   border-radius: var(--radius-sm);
   font-size: 13px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 8px;
   line-height: 1.4;
+  text-align: center;
 }
 
 .alert-success { background: var(--primary-light); color: var(--primary-dark); border: 1px solid #86efac; }

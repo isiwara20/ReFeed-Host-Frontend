@@ -483,7 +483,211 @@
   box-shadow: 0 6px 20px 0 rgba(239, 68, 68, 0.4);
 }
 
-/* Responsive Design */
+/* Icon Styling */
+.admin-detail-icon {
+  margin-right: 8px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-detail-icon svg {
+  width: 16px;
+  height: 16px;
+  color: #64748b;
+}
+
+.admin-document-icon {
+  margin-right: 8px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-document-icon svg {
+  width: 16px;
+  height: 16px;
+  color: #10b981;
+}
+
+.admin-tab-icon {
+  margin-right: 8px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-tab-icon svg {
+  width: 18px;
+  height: 18px;
+  color: inherit;
+}
+
+.admin-empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cbd5e1;
+}
+
+.admin-empty-icon svg {
+  width: 48px;
+  height: 48px;
+  color: #cbd5e1;
+}
+
+.admin-action-button span svg {
+  width: 16px;
+  height: 16px;
+  color: inherit;
+}
+
+/* Document Modal Styles */
+.admin-document-viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.admin-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.admin-info-item {
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.admin-info-item strong {
+  color: #1e293b;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.admin-document-section {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+.admin-document-section h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 16px 0;
+}
+
+.admin-document-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 32px;
+  background: white;
+  border-radius: 8px;
+  border: 2px dashed #cbd5e1;
+  min-height: 200px;
+  justify-content: center;
+}
+
+.admin-document-placeholder svg {
+  width: 48px;
+  height: 48px;
+  color: #cbd5e1;
+  margin-bottom: 16px;
+}
+
+.admin-document-placeholder p {
+  color: #64748b;
+  margin: 0 0 16px 0;
+  font-size: 14px;
+}
+
+.admin-download-btn {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-download-btn:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
+
+/* Profile Image Styles */
+.admin-profile-image-container {
+  margin-top: 8px;
+}
+
+.admin-profile-image {
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 8px;
+  border: 2px solid #e2e8f0;
+  object-fit: cover;
+}
+
+/* Status Badge Styles */
+.admin-status-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.admin-status-badge.completed {
+  background: #10b981;
+  color: white;
+}
+
+.admin-status-badge.pending {
+  background: #f59e0b;
+  color: white;
+}
+
+.admin-risk-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.admin-risk-badge.low {
+  background: #10b981;
+  color: white;
+}
+
+.admin-risk-badge.medium {
+  background: #f59e0b;
+  color: white;
+}
+
+.admin-risk-badge.high {
+  background: #ef4444;
+  color: white;
+}
 @media (max-width: 768px) {
   .admin-verification-header {
     padding: 24px 20px;

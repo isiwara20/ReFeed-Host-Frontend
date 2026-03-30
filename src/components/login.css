@@ -320,4 +320,41 @@
     align-items: flex-start;
     padding-top: 60px;
   }
+
+  .login-form-wrap {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .login-mobile-header {
+    margin-bottom: 32px;
+  }
+
+  .login-mobile-logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #111827;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .login-mobile-logo span {
+    color: #00c853;
+  }
+
+  .login-mobile-tagline {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  .login-mobile-header {
+    display: none;
+  }
 }

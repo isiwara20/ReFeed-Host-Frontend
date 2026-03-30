@@ -51,6 +51,22 @@ const IconChart = () => (
   </svg>
 );
 
+const IconCommunity = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+  </svg>
+);
+
+const IconLeaf = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+    <path d="M12 2c0 5.52-4.48 10-10 10" />
+  </svg>
+);
+
 const FEATURES = [
   { Icon: IconZap,    title: 'Real-Time Food Donation',   desc: 'Post surplus food instantly and get matched with nearby NGOs within minutes. No delays, no waste.' },
   { Icon: IconMatch,  title: 'Smart NGO Matching',        desc: 'Our algorithm matches donations to the most suitable verified NGO based on location, capacity, and food type.' },
@@ -58,6 +74,8 @@ const FEATURES = [
   { Icon: IconQr,     title: 'QR Verification',           desc: 'Every pickup is verified with a unique QR code, ensuring full traceability and accountability.' },
   { Icon: IconMap,    title: 'Live Logistics Tracking',   desc: 'Track donation pickups and deliveries on an interactive map in real time.' },
   { Icon: IconChart,  title: 'Impact Dashboard',          desc: 'Donors get a personal dashboard showing meals donated, CO₂ saved, and communities impacted.' },
+  { Icon: IconCommunity, title: 'Community Network',      desc: 'Connect with verified NGOs, restaurants, and food businesses in your area to build a stronger food-sharing ecosystem.' },
+  { Icon: IconLeaf,   title: 'Environmental Impact',      desc: 'Every donation reduces landfill waste and carbon emissions. Track your contribution to a sustainable future.' },
 ];
 
 const Features = () => {

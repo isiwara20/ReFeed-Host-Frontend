@@ -18,6 +18,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -27,7 +28,12 @@ const Navbar = () => {
 
   const linkClassName = ({ isActive }) => `navbar__route ${isActive ? "active" : ""}`;
 
-  const handleLogout = () => {
+  const handleLogoutClick = () => {
+    setShowLogoutConfirm(true);
+  };
+
+  const handleConfirmLogout = () => {
+    setShowLogoutConfirm(false);
     setMenuOpen(false);
     logout();
     navigate("/login");
@@ -53,6 +59,14 @@ const Navbar = () => {
 
   return (
     <nav className={`navbar${scrolled ? " scrolled" : ""}`}>
+      {/* Menu backdrop overlay */}
+      {menuOpen && (
+        <div 
+          className="navbar__backdrop" 
+          onClick={closeMenu}
+        />
+      )}
+
       <div className="navbar__inner">
         <Link to="/" className="navbar__logo" onClick={closeMenu}>
           Re<span>Feed</span>
@@ -85,7 +99,7 @@ const Navbar = () => {
                 {currentUser?.email || currentUser?.username || "Logged in"}
               </li>
               <li>
-                <button type="button" onClick={handleLogout} className="navbar__logout">
+                <button type="button" onClick={handleLogoutClick} className="navbar__logout">
                   Logout
                 </button>
               </li>
@@ -103,6 +117,43 @@ const Navbar = () => {
           )}
         </ul>
       </div>
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutConfirm && (
+        <div 
+          className="logout-modal-backdrop" 
+          onClick={() => setShowLogoutConfirm(false)}
+        >
+          <div 
+            className="logout-modal-card" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="logout-modal-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="32" height="32">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
+            </div>
+            <div className="logout-modal-title">Sign Out</div>
+            <div className="logout-modal-desc">Are you sure you want to sign out of your account?</div>
+            <div className="logout-modal-actions">
+              <button 
+                className="logout-modal-btn logout-modal-btn-cancel" 
+                onClick={() => setShowLogoutConfirm(false)}
+              >
+                Cancel
+              </button>
+              <button 
+                className="logout-modal-btn logout-modal-btn-confirm" 
+                onClick={handleConfirmLogout}
+              >
+                Yes, Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
