@@ -1,7 +1,7 @@
 .rf-notifications-page {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 92px 12px 24px;
+  padding: 72px 12px 24px;
 }
 
 .rf-notifications-hero {
@@ -198,7 +198,7 @@
 
 @media (max-width: 768px) {
   .rf-notifications-page {
-    padding-top: 82px;
+    padding-top: 64px;
     padding-left: 10px;
     padding-right: 10px;
   }

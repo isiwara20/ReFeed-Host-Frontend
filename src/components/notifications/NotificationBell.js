@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { apiClient } from "../../api/client";
 import "./NotificationBell.css";
@@ -29,6 +29,7 @@ const getUserId = (currentUser) =>
 const NotificationBell = ({ className = "" }) => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const userId = getUserId(currentUser);
   const [unreadCount, setUnreadCount] = useState(0);
   const [loadingCount, setLoadingCount] = useState(false);
@@ -186,6 +187,14 @@ const NotificationBell = ({ className = "" }) => {
 
     if (notification?.metadata?.conversationId) {
       setMenuOpen(false);
+      if (location.pathname.startsWith("/admin-dashboard")) {
+        navigate(`/admin-dashboard?page=messages&conversationId=${notification.metadata.conversationId}`);
+        return;
+      }
+      if (location.pathname.startsWith("/ngo-dashboard")) {
+        navigate(`/ngo-dashboard?page=messages&conversationId=${notification.metadata.conversationId}`);
+        return;
+      }
       navigate(`/messages?conversationId=${notification.metadata.conversationId}`);
     }
   };
@@ -198,6 +207,14 @@ const NotificationBell = ({ className = "" }) => {
 
   const openNotificationCenter = () => {
     setMenuOpen(false);
+    if (location.pathname.startsWith("/admin-dashboard")) {
+      navigate("/admin-dashboard?page=notifications");
+      return;
+    }
+    if (location.pathname.startsWith("/ngo-dashboard")) {
+      navigate("/ngo-dashboard?page=notifications");
+      return;
+    }
     navigate("/notifications");
   };
 

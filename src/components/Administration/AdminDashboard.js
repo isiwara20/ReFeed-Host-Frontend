@@ -14,6 +14,10 @@ import SystemAuditLogs from './SystemAuditLogs';
 import AdminRegistration from './AdminRegistration';
 import AdminProfile from './AdminProfile';
 import './AdminDashboard.css';
+import NotificationBell from "../notifications/NotificationBell";
+import NotificationPage from "../notifications/NotificationPage";
+import NotificationPreferences from "../notifications/NotificationPreferences";
+import MessagesPage from '../communications/MessagesPage';
 
 const AdminDashboard = () => {
   const { currentUser, user, loading, logout } = useAuth();
@@ -219,6 +223,12 @@ const AdminDashboard = () => {
         return <AdminRegistration adminData={adminData} setActivePage={handlePageChange} />;
       case 'profile':
         return <AdminProfile adminData={adminData} setActivePage={handlePageChange} onProfileUpdate={handleProfileUpdate} />;
+      case 'messages':
+        return <MessagesPage adminData={adminData} setActivePage={handlePageChange} onProfileUpdate={handleProfileUpdate} />;
+      case 'notifications':
+        return <NotificationPage />;
+      case 'notification-preferences':
+        return <NotificationPreferences />;
       default:
         return <DashboardOverview adminData={adminData} setActivePage={handlePageChange} />;
     }
@@ -259,8 +269,11 @@ const AdminDashboard = () => {
             <div className="admin-header-title">
               <span className="admin-header-logo-main">Re</span><span className="admin-header-logo-accent">Feed Administration</span>
             </div>
-            <div className="admin-info">
-              <span className="admin-info-text">Welcome, {adminData?.name || 'Admin'}</span>
+            <div className="admin-header-right">
+              <NotificationBell className="navbar__bell" />
+              <div className="admin-info">
+                <span className="admin-info-text">Welcome, {adminData?.name || 'Admin'}</span>
+              </div>
             </div>
           </div>
         </header>

@@ -34,6 +34,24 @@ const Sidebar = ({ activePage, setActivePage, adminData, onLogout, isOpen }) => 
       id: 'audit-logs',
       name: 'System Audit Logs',
       description: 'View admin activity history'
+    },
+    {
+      id: 'messages',
+      name: 'Messages',
+      icon: '💬',
+      description: 'View and manage system messages'
+    },
+    {
+      id: 'notifications',
+      name: 'Notifications',
+      icon: '🔔',
+      description: 'View all notification activity'
+    },
+    {
+      id: 'notification-preferences',
+      name: 'Notification Preferences',
+      icon: '⚙️',
+      description: 'Manage admin notification settings'
     }
   ];
 

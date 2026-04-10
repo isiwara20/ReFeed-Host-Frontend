@@ -16,15 +16,17 @@ const Navbar = () => {
   const { currentUser, logout, isAuthenticated } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const isHomePage = location.pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   useEffect(() => {
+    if (!isHomePage) return;
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isHomePage]);
 
   const linkClassName = ({ isActive }) => `navbar__route ${isActive ? "active" : ""}`;
 
@@ -58,7 +60,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar${scrolled ? " scrolled" : ""}`}>
+    <nav className={`navbar${(scrolled || !isHomePage) ? " scrolled" : ""}`}>
       {/* Menu backdrop overlay */}
       {menuOpen && (
         <div 
@@ -87,7 +89,7 @@ const Navbar = () => {
           {isAuthenticated ? (
             <>
               <li><NavLink to={getDashboardRoute(currentUser)} className={linkClassName} onClick={closeMenu}>Dashboard</NavLink></li>
-              <li><NavLink to="/users" className={linkClassName} onClick={closeMenu}>Users</NavLink></li>
+               <li><NavLink to="/users" className={linkClassName} onClick={closeMenu}>Users</NavLink></li>
               <li><NavLink to="/notifications" className={linkClassName} onClick={closeMenu}>Notifications</NavLink></li>
               <li><NavLink to="/messages" className={linkClassName} onClick={closeMenu}>Messages</NavLink></li>
               <li><NavLink to="/donators" className={linkClassName} onClick={closeMenu}>Donators</NavLink></li>

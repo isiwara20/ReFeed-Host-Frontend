@@ -1,6 +1,10 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./NgoDashboard.css";
+import NotificationBell from "../notifications/NotificationBell";
+import NotificationPage from "../notifications/NotificationPage";
+import MessagesPage from "../communications/MessagesPage";
+import NotificationPreferences from "../notifications/NotificationPreferences";
 
 const BASE = "https://refeed-hosting-backend-production.up.railway.app/api";
 const get  = (url) => fetch(`${BASE}${url}`).then((r) => r.json());
@@ -80,12 +84,19 @@ function UrgencyPill({ level }) {
    OVERVIEW PAGE
 ══════════════════════════════════════════ */
 function OverviewPage({ username, verifyStatus, requests, orders, toast }) {
+  const [currentPage, setCurrentPage] = useState(0);
+  const rowsPerPage = 4;
+  
   const stats = [
     { label: "My Requests",   value: requests.length,                                                              cls: "stat-icon-green",  icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg> },
     { label: "Matched",       value: requests.filter(r=>r.status==="matched").length,                              cls: "stat-icon-blue",   icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> },
     { label: "Active Orders", value: orders.filter(o=>o.status==="pending"||o.status==="in_progress").length,      cls: "stat-icon-orange", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> },
     { label: "Completed",     value: orders.filter(o=>o.status==="completed").length,                              cls: "stat-icon-purple", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> },
   ];
+
+  const paginatedOrders = orders.slice(currentPage * rowsPerPage, (currentPage + 1) * rowsPerPage);
+  const totalPages = Math.ceil(orders.length / rowsPerPage);
+
   return (
     <div>
       <p className="page-title">Dashboard Overview</p>
@@ -118,22 +129,62 @@ function OverviewPage({ username, verifyStatus, requests, orders, toast }) {
             <div className="empty-desc">Submit a food request to get started.</div>
           </div>
         ) : (
-          <div className="table-wrap">
-            <table>
-              <thead><tr><th>Food Type</th><th>Qty</th><th>Delivery</th><th>Status</th><th>Date</th></tr></thead>
-              <tbody>
-                {orders.slice(0,5).map((o) => (
-                  <tr key={o._id}>
-                    <td>{o.foodType}</td>
-                    <td>{o.quantity?.amount} {o.quantity?.unit}</td>
-                    <td style={{ textTransform:"capitalize" }}>{o.deliveryType}</td>
-                    <td><StatusPill status={o.status} /></td>
-                    <td>{new Date(o.createdAt).toLocaleDateString()}</td>
+          <>
+            <div className="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Food Type</th>
+                    <th>Quantity</th>
+                    <th>Delivery</th>
+                    <th>Status</th>
+                    <th>Date</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {paginatedOrders.map((o) => (
+                    <tr key={o._id}>
+                      <td className="table-cell-food">{o.foodType}</td>
+                      <td>{o.quantity?.amount} {o.quantity?.unit}</td>
+                      <td style={{ textTransform:"capitalize" }}>{o.deliveryType}</td>
+                      <td><StatusPill status={o.status} /></td>
+                      <td>{new Date(o.createdAt).toLocaleDateString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {totalPages > 1 && (
+              <div className="table-pagination">
+                <button
+                  className="pagination-btn"
+                  onClick={() => setCurrentPage(Math.max(0, currentPage - 1))}
+                  disabled={currentPage === 0}
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14">
+                    <polyline points="15 18 9 12 15 6"/>
+                  </svg>
+                  Previous
+                </button>
+
+                <div className="pagination-info">
+                  Page <strong>{currentPage + 1}</strong> of <strong>{totalPages}</strong>
+                </div>
+
+                <button
+                  className="pagination-btn"
+                  onClick={() => setCurrentPage(Math.min(totalPages - 1, currentPage + 1))}
+                  disabled={currentPage === totalPages - 1}
+                >
+                  Next
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14">
+                    <polyline points="9 18 15 12 9 6"/>
+                  </svg>
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
@@ -1264,6 +1315,7 @@ function ProfilePage({ username, ngoData, onUpdated, toast }) {
 ══════════════════════════════════════════ */
 export default function NgoDashboard() {
   const navigate = useNavigate();
+  const location = useLocation();
   const user     = getUser();
   const username = user.username;
 
@@ -1277,6 +1329,24 @@ export default function NgoDashboard() {
   const [avatar, setAvatar]         = useState(getAvatar());
   const [showSidebar, setShowSidebar] = useState(false);
   const { toasts, add: toast }      = useToast();
+  const allowedPages = useRef(new Set([
+    "overview",
+    "verification",
+    "food-requests",
+    "orders",
+    "addresses",
+    "profile",
+    "messages",
+    "notifications",
+    "notification-preferences"
+  ]));
+
+  useEffect(() => {
+    const pageFromQuery = new URLSearchParams(location.search).get("page");
+    if (pageFromQuery && allowedPages.current.has(pageFromQuery)) {
+      setActivePage(pageFromQuery);
+    }
+  }, [location.search]);
 
   // sync avatar from localStorage when profile updates
   useEffect(() => {
@@ -1312,7 +1382,13 @@ export default function NgoDashboard() {
   }, [username]);
 
   useEffect(() => {
-    if (!username) { navigate("/login"); return; }
+    console.log("NgoDashboard useEffect: username =", username, "user object =", getUser());
+    if (!username) { 
+      console.log("NgoDashboard: No username, redirecting to login");
+      navigate("/login"); 
+      return; 
+    }
+    console.log("NgoDashboard: Loading data for username:", username);
     loadNgoData(); loadVerifyStatus(); loadRequests(); loadOrders();
   }, [username, navigate, loadNgoData, loadVerifyStatus, loadRequests, loadOrders]);
 
@@ -1335,9 +1411,12 @@ export default function NgoDashboard() {
     { id:"orders",        label:"My Orders",     icon:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> },
     { id:"addresses",     label:"Addresses",     icon:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> },
     { id:"profile",       label:"Profile",       icon:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
+    { id:"messages",      label:"Messages",      icon:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
+    { id:"notifications", label:"Notifications", icon:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> },
+    { id:"notification-preferences", label:"Notification Preferences", icon:<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> },
   ];
 
-  const pageTitles = { overview:"Overview", verification:"Verification", "food-requests":"Food Requests", orders:"My Orders", addresses:"Addresses", profile:"Profile" };
+  const pageTitles = { overview:"Overview", verification:"Verification", "food-requests":"Food Requests", orders:"My Orders", addresses:"Addresses", profile:"Profile", messages:"Messages" ,notifications:"Notifications","notification-preferences":"Notification Preferences" };
   const initials = (ngoData?.name || username || "N")[0].toUpperCase();
 
   return (
@@ -1425,6 +1504,7 @@ export default function NgoDashboard() {
             <span className="dash-header-title">{pageTitles[activePage]}</span>
           </div>
           <div className="dash-header-right">
+            <NotificationBell className="navbar__bell" />
             <span className={`header-badge ${verifyBadge.cls}`}>{verifyBadge.label}</span>
             <button className="theme-toggle" onClick={() => setTheme(t => t === "light" ? "dark" : "light")} title="Toggle theme">
               {theme === "light" ? "🌙" : "☀️"}
@@ -1434,12 +1514,17 @@ export default function NgoDashboard() {
         </header>
 
         <div className="dash-content">
-          {activePage === "overview"      && <OverviewPage username={username} verifyStatus={verifyStatus} requests={requests} orders={orders} toast={toast} />}
-          {activePage === "verification"  && <VerificationPage username={username} verifyStatus={verifyStatus} verifyData={verifyData} onRefresh={loadVerifyStatus} toast={toast} />}
-          {activePage === "food-requests" && <FoodRequestsPage username={username} ngoData={ngoData} verifyStatus={verifyStatus} toast={toast} />}
-          {activePage === "orders"        && <OrdersPage username={username} toast={toast} />}
-          {activePage === "addresses"     && <AddressesPage username={username} toast={toast} />}
-          {activePage === "profile"       && <ProfilePage username={username} ngoData={ngoData} onUpdated={() => { loadNgoData(); setAvatar(getAvatar()); }} toast={toast} />}
+          <div className="dash-content-inner">
+            {activePage === "overview"      && <OverviewPage username={username} verifyStatus={verifyStatus} requests={requests} orders={orders} toast={toast} />}
+            {activePage === "verification"  && <VerificationPage username={username} verifyStatus={verifyStatus} verifyData={verifyData} onRefresh={loadVerifyStatus} toast={toast} />}
+            {activePage === "food-requests" && <FoodRequestsPage username={username} ngoData={ngoData} verifyStatus={verifyStatus} toast={toast} />}
+            {activePage === "orders"        && <OrdersPage username={username} toast={toast} />}
+            {activePage === "addresses"     && <AddressesPage username={username} toast={toast} />}
+            {activePage === "profile"       && <ProfilePage username={username} ngoData={ngoData} onUpdated={() => { loadNgoData(); setAvatar(getAvatar()); }} toast={toast} />}
+            {activePage === "messages"      && <MessagesPage username={username} toast={toast} />}
+            {activePage === "notifications"  && <NotificationPage username={username} toast={toast} />}
+            {activePage === "notification-preferences"  && <NotificationPreferences username={username} toast={toast} />}
+          </div>
         </div>
 
         <footer className="dash-footer">

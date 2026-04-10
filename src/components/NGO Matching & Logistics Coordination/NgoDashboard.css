@@ -67,6 +67,23 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; background: var(--bg); colo
   transition: transform 0.25s ease;
 }
 
+.dash-sidebar.open {
+  transform: translateX(0);
+}
+
+.dash-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .sidebar-brand {
   display: flex; align-items: center; gap: 4px;
   padding: 20px 24px;
@@ -127,22 +144,42 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; background: var(--bg); colo
 .dash-main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; min-height: 100vh; padding-bottom: 60px; }
 
 .dash-header {
-  height: var(--header-h);
+  min-height: var(--header-h);
+  width: 100%;
   background: var(--header-bg);
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 28px;
+  gap: 14px;
+  padding: 10px 28px;
   position: sticky; top: 0; z-index: 50;
 }
-
 .dash-header-left {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+.dash-header-title {
+  font-size: clamp(16px, 1.35vw, 20px);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.2px;
+  line-height: 1.2;
+}
+.dash-header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-width: 0;
 }
 
-.dash-header-title { font-size: 16px; font-weight: 700; color: var(--text); }
-.dash-header-right { display: flex; align-items: center; gap: 10px; }
+.dash-header-right .rf-bell {
+  width: 36px;
+  height: 36px;
+}
 
 .dash-sidebar-toggle {
   display: none;
@@ -153,6 +190,7 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; background: var(--bg); colo
   padding: 8px;
   border-radius: 8px;
   transition: background 0.2s;
+  flex-shrink: 0;
 }
 
 .dash-sidebar-toggle:hover {
@@ -160,8 +198,10 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; background: var(--bg); colo
 }
 
 .header-badge {
-  padding: 4px 10px; border-radius: 20px;
+  padding: 5px 11px; border-radius: 20px;
   font-size: 11.5px; font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
 }
 .badge-verified   { background: var(--primary-light); color: var(--primary-dark); }
 .badge-pending    { background: var(--warning-light);  color: var(--warning); }
@@ -169,22 +209,24 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; background: var(--bg); colo
 .badge-unverified { background: var(--bg); color: var(--muted); border: 1px solid var(--border); }
 
 .theme-toggle {
-  width: 34px; height: 34px;
+  width: 36px; height: 36px;
   border-radius: var(--radius-sm);
   border: 1.5px solid var(--border);
   background: none; cursor: pointer;
   font-size: 16px; display: flex; align-items: center; justify-content: center;
   transition: border-color 0.15s;
+  flex-shrink: 0;
 }
 .theme-toggle:hover { border-color: var(--primary); }
 
 .btn-logout {
-  padding: 7px 14px;
+  padding: 8px 14px;
   background: none; border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
   font-size: 13px; font-weight: 600; color: var(--muted);
   cursor: pointer; font-family: inherit;
   transition: border-color 0.15s, color 0.15s;
+  white-space: nowrap;
 }
 .btn-logout:hover { border-color: var(--danger); color: var(--danger); }
 
@@ -245,8 +287,8 @@ body { font-family: 'Inter', 'Segoe UI', sans-serif; background: var(--bg); colo
 .stat-icon-orange { background: var(--warning-light); }
 .stat-icon-purple { background: #faf5ff; }
 [data-theme="dark"] .stat-icon-purple { background: rgba(139,92,246,0.15); }
-.stat-value { font-size: 26px; font-weight: 800; color: var(--text); }
-.stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.stat-value { font-size: 26px; font-weight: 800; color: var(--text); text-shadow: none; }
+.stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; text-shadow: none; }
 
 /* ─── FORM ELEMENTS ─── */
 .form-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -295,12 +337,54 @@ td { padding: 12px 14px; border-bottom: 1px solid var(--border); color: var(--te
 tr:last-child td { border-bottom: none; }
 tr:hover td { background: var(--bg); }
 
+/* ─── TABLE PAGINATION ─── */
+.table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 12px;
+}
+.pagination-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.pagination-btn:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-xlight);
+}
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.pagination-info {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.pagination-info strong { color: var(--text); font-weight: 700; }
+
 /* ─── STATUS PILLS ─── */
 .pill { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 11.5px; font-weight: 700; }
 .pill-green  { background: var(--primary-light); color: var(--primary-dark); }
 .pill-yellow { background: var(--warning-light);  color: var(--warning); }
 .pill-red    { background: var(--danger-light);   color: var(--danger); }
 .pill-blue   { background: var(--info-light);     color: var(--info); }
+
 .pill-gray   { background: var(--bg); color: var(--muted); border: 1px solid var(--border); }
 
 /* ─── EMPTY STATE ─── */
@@ -312,7 +396,7 @@ tr:hover td { background: var(--bg); }
 /* ─── MODAL ─── */
 .modal-backdrop {
   position: fixed; inset: 0;
-  background: rgba(0,0,0,0.55); backdrop-filter: blur(4px);
+  background: rgba(0,0,0,0.55); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
   display: flex; align-items: center; justify-content: center;
   z-index: 200; padding: 20px;
   animation: fadeIn 0.18s ease;
@@ -453,36 +537,58 @@ tr:hover td { background: var(--bg); }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
-  .dash-sidebar { 
-    transform: translateX(-100%);
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 200;
-    transition: transform 0.3s ease;
+  .dash-sidebar { transform: translateX(-100%); }
+  .dash-main    { margin-left: 0; width: 100%; }
+  .dash-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 12px 14px;
   }
-
-  .dash-sidebar.open {
-    transform: translateX(0);
-  }
-
-  .dash-sidebar-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 150;
-    animation: fadeIn 0.2s ease;
-  }
-
-  .dash-sidebar-toggle {
+  .dash-header-left {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
   }
-
-  .dash-main    { margin-left: 0; }
-  .dash-content { padding: 20px 16px; }
+  .dash-sidebar-toggle {
+    display: flex;
+  }
+  .dash-header-title { 
+    font-size: 16px;
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dash-header-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .header-badge { 
+    font-size: 11px;
+    padding: 4px 8px;
+    order: 1;
+  }
+  .theme-toggle { 
+    order: 2;
+    font-size: 16px;
+  }
+  .btn-logout { 
+    order: 3;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  .rf-bell {
+    width: 28px !important;
+    height: 28px !important;
+  }
   .form-grid, .form-grid-3, .delivery-options { grid-template-columns: 1fr; }
   .stat-grid    { grid-template-columns: 1fr 1fr; }
 
@@ -885,3 +991,10 @@ tr:hover td { background: var(--bg); }
 }
 [data-theme="dark"] .filter-select option { background: #1e293b; }
 [data-theme="dark"] .donated-badge { background: rgba(167,139,250,0.15); color: #a78bfa; border-color: rgba(167,139,250,0.3); }
+
+/* ─── OVERRIDE: reset standalone page padding when inside dashboard ─── */
+.dash-content .rf-messages-page,
+.dash-content .rf-notifications-page,
+.dash-content .rf-pref-page {
+  padding-top: 0 !important;
+}

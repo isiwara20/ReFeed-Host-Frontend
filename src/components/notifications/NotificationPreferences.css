@@ -1,7 +1,7 @@
 .rf-pref-page {
   max-width: 880px;
   margin: 0 auto;
-  padding: 92px 12px 24px;
+  padding: 72px 12px 24px;
 }
 
 .rf-pref-header {
@@ -195,7 +195,7 @@
 
 @media (max-width: 640px) {
   .rf-pref-page {
-    padding-top: 82px;
+    padding-top: 64px;
     padding-left: 10px;
     padding-right: 10px;
   }

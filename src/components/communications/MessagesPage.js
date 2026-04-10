@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { apiClient } from "../../api/client";
 import { useAuth } from "../../context/AuthContext";
 import "./MessagesPage.css";
+import DonorNavbar from "../DonorNavbar";
 
 const formatTimestamp = (value) => {
   if (!value) return "";
@@ -332,6 +333,8 @@ const MessagesPage = () => {
     "Messages";
 
   return (
+    <>
+    {currentUser?.role === "DONATOR" && <DonorNavbar />}
     <div className="rf-messages-page">
       <header className="rf-messages-header">
         <div>
@@ -612,6 +615,7 @@ const MessagesPage = () => {
         </section>
       </div>
     </div>
+    </>
   );
 };
 

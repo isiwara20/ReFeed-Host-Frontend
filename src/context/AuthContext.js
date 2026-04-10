@@ -36,23 +36,20 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  // Persist user
+  // Persist user changes.
   useEffect(() => {
     try {
       if (currentUser) {
-        window.localStorage.setItem(
-          LOCAL_STORAGE_KEY,
-          JSON.stringify(currentUser)
-        );
+        window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(currentUser));
       } else {
         window.localStorage.removeItem(LOCAL_STORAGE_KEY);
       }
     } catch (error) {
-      console.error("Failed to persist currentUser", error);
+      console.error("Failed to persist currentUser to storage", error);
     }
   }, [currentUser]);
 
-  // Auto logout if expired
+  // Check expiry every minute while the tab is open.
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentUser((prev) => {
@@ -62,13 +59,13 @@ export const AuthProvider = ({ children }) => {
         }
         return prev;
       });
-    }, 60000);
+    }, 60 * 1000);
     return () => clearInterval(interval);
   }, []);
 
   const login = (userData) => {
     if (!userData) return setCurrentUser(null);
-
+    // Stamp an expiry time onto the session object.
     setCurrentUser({
       ...userData,
       _expiresAt: Date.now() + SESSION_DURATION_MS,
@@ -76,6 +73,16 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => setCurrentUser(null);
+
+  const value = {
+    user: currentUser,
+    currentUser,
+    setCurrentUser,
+    login,
+    logout,
+    isAuthenticated: !!currentUser,
+    loading,
+  };
 
   return (
     <AuthContext.Provider

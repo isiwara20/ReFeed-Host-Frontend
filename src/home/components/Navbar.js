@@ -65,7 +65,6 @@ const Navbar = () => {
           <li><a href="#contact" onClick={(e) => { e.preventDefault(); scrollTo('contact'); }}>Contact</a></li>
           <li><a href="/donators">Donators</a></li>
 
-
           {!currentUser ? (
             <>
               <li><a href="/login">Login</a></li>

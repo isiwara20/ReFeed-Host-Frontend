@@ -5,6 +5,7 @@ import API from "../../api/axios";
 import { apiClient } from "../../api/client";
 import VoiceAssistant from "../voice/VoiceAssistant";
 import "./donatorDashboard.css";
+import NotificationBell from "../notifications/NotificationBell";
 
 /* ── Inline SVG icons ── */
 const IconUser = () => (
@@ -72,6 +73,25 @@ const IconNgo = () => (
   </svg>
 );
 
+const IconMessage = () => (
+  <svg
+    width="22"
+    height="22"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    {/* Chat bubble */}
+    <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
+
+    {/* Message lines */}
+    <line x1="8" y1="9" x2="16" y2="9" />
+    <line x1="8" y1="13" x2="14" y2="13" />
+  </svg>
+);
 /* ── Food Request Summary + Chart ── */
 const CATEGORY_COLORS = {
   "non-vegetable": "#ff6b35",
@@ -275,6 +295,14 @@ const CARDS = [
     label: "Manage Restaurant",
     to: "/restaurant",
   },
+  {
+    color: "green",
+    Icon: IconMessage,
+    title: "Messages",
+    desc: "Communicate directly with NGOs assigned to your donations. Coordinate pickups and share updates.",
+    label: "Messages",
+    to: "/messages",
+  },
 ];
 
 const DonatorDashboard = () => {
@@ -337,6 +365,7 @@ const DonatorDashboard = () => {
         </nav>
         <div className="dd-topbar__right">
           <div className="dd-topbar__user">
+            <NotificationBell className="navbar__bell" />
             <div className="dd-topbar__avatar">{initials}</div>
             <div>
               <div className="dd-topbar__username">{currentUser?.username}</div>

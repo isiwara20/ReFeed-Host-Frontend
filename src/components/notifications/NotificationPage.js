@@ -2,8 +2,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { apiClient } from "../../api/client";
+import DonorNavbar from "../DonorNavbar";
 import NotificationList from "./NotificationList";
 import "./NotificationPage.css";
+
 
 const PAGE_SIZE = 20;
 
@@ -135,12 +137,18 @@ const NotificationPage = () => {
     if (notificationId) {
       await handleMarkRead(notificationId);
     }
+    if (location.pathname.startsWith("/ngo-dashboard")) {
+      navigate(`/ngo-dashboard?page=messages&conversationId=${conversationId}`);
+      return;
+    }
     navigate(`/messages?conversationId=${conversationId}`);
   };
 
   return (
-    <div className="rf-notifications-page">
-      <div className="rf-notifications-hero">
+    <>
+      {currentUser?.role === "DONATOR" && <DonorNavbar />}
+      <div className="rf-notifications-page">
+        <div className="rf-notifications-hero">
         <div>
           <h1 className="rf-notifications-title">Notification Center</h1>
           <p className="rf-notifications-subtitle">
@@ -156,7 +164,7 @@ const NotificationPage = () => {
             Refresh
           </button>
           <Link
-            to="/notifications"
+            to="?"
             className={`rf-filter-chip ${
               !showUnreadOnly
                 ? "rf-filter-chip-active"
@@ -166,7 +174,7 @@ const NotificationPage = () => {
             All
           </Link>
           <Link
-            to="/notifications?filter=unread"
+            to="?filter=unread"
             className={`rf-filter-chip ${
               showUnreadOnly
                 ? "rf-filter-chip-active"
@@ -200,6 +208,7 @@ const NotificationPage = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

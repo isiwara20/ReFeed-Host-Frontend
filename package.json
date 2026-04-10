@@ -23,7 +23,27 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test:frontend": "npx cypress open",
+    "test:frontend:headless": "npx cypress run",
+    "test:ngo": "npx cypress run --spec 'cypress/e2e/ngo_userReg/*.cy.js'",
+    "test:ngo:registration": "npx cypress run --spec 'cypress/e2e/ngo_userReg/registration.cy.js'",
+    "test:ngo:password": "npx cypress run --spec 'cypress/e2e/ngo_userReg/passwordReset.cy.js'",
+    "test:ngo:food": "npx cypress run --spec 'cypress/e2e/ngo_userReg/foodRequest.cy.js'",
+    "test:ngo:address": "npx cypress run --spec 'cypress/e2e/ngo_userReg/addressManagement.cy.js'",
+    "test:ngo:dashboard": "npx cypress run --spec 'cypress/e2e/ngo_userReg/ngoDashboard.cy.js'",
+    "test:ngo:payment": "npx cypress run --spec 'cypress/e2e/ngo_userReg/donationPayment.cy.js'",
+    "test:ngo:workflow": "npx cypress run --spec 'cypress/e2e/ngo_userReg/completeWorkflow.cy.js'",
+    "test:ngo:performance": "npx cypress run --spec 'cypress/e2e/ngo_userReg/performance.cy.js'",
+    "test:cypress:admin": "cypress run --e2e --spec \"cypress/e2e/administration/**/*\"",
+    "test:cypress:donor": "cypress run --e2e --spec \"cypress/e2e/donor/**/*\"",
+    "test:cypress:ngo": "cypress run --e2e --spec \"cypress/e2e/ngo/**/*\"",
+    "test:cypress:messages": "cypress run --e2e --spec \"cypress/e2e/**/messages/**/*\"",
+    "test:cypress:notifications": "cypress run --e2e --spec \"cypress/e2e/**/notifications/**/*\"",
+    "test:cypress:smoke": "cypress run --e2e --spec \"cypress/e2e/messages/**/*,cypress/e2e/notifications/**/*\"",
+    "test:cypress:all-workflows": "cypress run --e2e --spec \"cypress/e2e/administration/**/*,cypress/e2e/donor/**/*,cypress/e2e/ngo/**/*\"",
+    "cypress:run": "npx cypress run"
+
   },
   "eslintConfig": {
     "extends": [
@@ -42,5 +62,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cypress": "^15.13.0"
   }
 }

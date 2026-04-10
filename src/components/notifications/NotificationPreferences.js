@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { apiClient } from "../../api/client";
 import "./NotificationPreferences.css";
+import DonorNavbar from "../DonorNavbar";
 
 const EVENT_GROUPS = [
   {
@@ -73,6 +74,9 @@ const ROLE_EVENT_KEYS = {
   admin: [
     "adminRegistered",
     "passwordResetSuccess",
+    "verificationApproved",
+    "verificationRejected",
+    "donationOrderCancelled",
     "complaintCreated",
     "complaintStatusUpdated",
     "newMessage",
@@ -167,8 +171,16 @@ const CHANNEL_OPTIONS = [
   },
 ];
 
+const ROLE_LABELS = {
+  donor: "Donator",
+  ngo: "NGO",
+  admin: "Admin",
+};
+
 const getUserId = (currentUser) =>
   currentUser?._id || currentUser?.id || currentUser?.userId || "";
+
+
 
 const ToggleRow = ({
   checked,
@@ -197,8 +209,10 @@ const ToggleRow = ({
 const NotificationPreferences = () => {
   const { currentUser } = useAuth();
   const userId = getUserId(currentUser);
-  const visibleEventKeys = getVisibleEventKeysByRole(currentUser?.role);
+  const role = normalizeRole(currentUser?.role);
+  const visibleEventKeys = getVisibleEventKeysByRole(role);
   const visibleEventGroups = buildVisibleEventGroups(visibleEventKeys);
+  const roleLabel = ROLE_LABELS[role] || "User";
   const [preferences, setPreferences] = useState(DEFAULT_PREFERENCES);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -343,11 +357,14 @@ const NotificationPreferences = () => {
   const isInitialLoading = loading && !hasLoadedInitially;
 
   return (
+    <>
+    {currentUser?.role === "DONATOR" && <DonorNavbar />}
     <div className="rf-pref-page">
       <header className="rf-pref-header">
         <h1>Notification Settings</h1>
         <p>
-          Choose how you want to be notified for events relevant to your account.
+        Choose how you want to be notified about donation and request
+        activity for your {roleLabel.toLowerCase()} account.
         </p>
       </header>
 
@@ -406,6 +423,15 @@ const NotificationPreferences = () => {
           </section>
         ))}
 
+        {visibleEventGroups.length === 0 && (
+          <section className="rf-pref-card">
+            <h2>Event preferences</h2>
+            <p>
+              Event-level toggles are not configured for the {roleLabel.toLowerCase()} account type yet.
+            </p>
+          </section>
+        )}
+
         <div className="rf-pref-actions">
           <button
             type="submit"
@@ -417,6 +443,7 @@ const NotificationPreferences = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 

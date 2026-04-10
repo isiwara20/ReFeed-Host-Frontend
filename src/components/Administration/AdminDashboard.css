@@ -172,6 +172,12 @@
   color: #1e293b;
 }
 
+.admin-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .admin-info {
   display: flex;
   align-items: center;
