@@ -86,22 +86,77 @@ function UrgencyPill({ level }) {
 function OverviewPage({ username, verifyStatus, requests, orders, toast }) {
   const [currentPage, setCurrentPage] = useState(0);
   const rowsPerPage = 4;
-  
+
+  const matched   = requests.filter(r => r.status === "matched");
+  const unmatched = requests.filter(r => r.status !== "matched");
+
+  const generateCSV = () => {
+    const rows = [
+      ["Report Type", "Food Type", "Quantity", "Unit", "Urgency", "Status", "Delivery Type", "Date"],
+      ...matched.map(r => [
+        "Matched",
+        r.foodType || "",
+        r.quantity?.amount || "",
+        r.quantity?.unit || "",
+        r.urgency || "",
+        r.status || "",
+        r.deliveryType || "",
+        r.createdAt ? new Date(r.createdAt).toLocaleDateString() : "",
+      ]),
+      ...unmatched.map(r => [
+        "Unmatched",
+        r.foodType || "",
+        r.quantity?.amount || "",
+        r.quantity?.unit || "",
+        r.urgency || "",
+        r.status || "",
+        r.deliveryType || "",
+        r.createdAt ? new Date(r.createdAt).toLocaleDateString() : "",
+      ]),
+    ];
+
+    const csv = rows.map(row => row.map(v => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement("a");
+    a.href     = url;
+    a.download = `refeed-report-${username}-${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    toast("CSV report downloaded successfully", "success");
+  };
+
   const stats = [
     { label: "My Requests",   value: requests.length,                                                              cls: "stat-icon-green",  icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg> },
-    { label: "Matched",       value: requests.filter(r=>r.status==="matched").length,                              cls: "stat-icon-blue",   icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> },
+    { label: "Matched",       value: matched.length,                                                               cls: "stat-icon-blue",   icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> },
     { label: "Active Orders", value: orders.filter(o=>o.status==="pending"||o.status==="in_progress").length,      cls: "stat-icon-orange", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> },
     { label: "Completed",     value: orders.filter(o=>o.status==="completed").length,                              cls: "stat-icon-purple", icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> },
   ];
 
-  const paginatedOrders = orders.slice(currentPage * rowsPerPage, (currentPage + 1) * rowsPerPage);
-  const totalPages = Math.ceil(orders.length / rowsPerPage);
+
 
   return (
     <div>
-      <p className="page-title">Dashboard Overview</p>
-      <p className="page-subtitle">Welcome back, {username}</p>
-
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", gap:"12px", marginBottom:"4px" }}>
+        <div>
+          <p className="page-title" style={{ margin:0 }}>Dashboard Overview</p>
+          <p className="page-subtitle" style={{ margin:0 }}>Welcome back, {username}</p>
+        </div>
+        <button
+          className="btn btn-outline"
+          onClick={generateCSV}
+          disabled={requests.length === 0}
+          title="Download matched & unmatched requests as CSV"
+          style={{ display:"flex", alignItems:"center", gap:"6px", whiteSpace:"nowrap" }}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="15" height="15">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Export CSV Report
+        </button>
+      </div>
       {verifyStatus !== "VERIFIED" && (
         <div className="info-banner">
           Your NGO is not yet verified. Complete verification to unlock food requests.
@@ -122,10 +177,10 @@ function OverviewPage({ username, verifyStatus, requests, orders, toast }) {
 
       <div className="card">
         <div className="card-title">Recent Activity</div>
-        {orders.length === 0 ? (
+        {requests.length === 0 ? (
           <div className="empty-state">
             <div className="empty-icon">📭</div>
-            <div className="empty-title">No orders yet</div>
+            <div className="empty-title">No requests yet</div>
             <div className="empty-desc">Submit a food request to get started.</div>
           </div>
         ) : (
@@ -134,28 +189,30 @@ function OverviewPage({ username, verifyStatus, requests, orders, toast }) {
               <table>
                 <thead>
                   <tr>
-                    <th>Food Type</th>
-                    <th>Quantity</th>
-                    <th>Delivery</th>
+                    <th>Category</th>
+                    <th>Urgency</th>
+                    <th>Location</th>
                     <th>Status</th>
+                    <th>Expiry</th>
                     <th>Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {paginatedOrders.map((o) => (
-                    <tr key={o._id}>
-                      <td className="table-cell-food">{o.foodType}</td>
-                      <td>{o.quantity?.amount} {o.quantity?.unit}</td>
-                      <td style={{ textTransform:"capitalize" }}>{o.deliveryType}</td>
-                      <td><StatusPill status={o.status} /></td>
-                      <td>{new Date(o.createdAt).toLocaleDateString()}</td>
+                  {requests.slice(currentPage * rowsPerPage, (currentPage + 1) * rowsPerPage).map((r) => (
+                    <tr key={r._id}>
+                      <td style={{ textTransform:"capitalize" }}>{r.category?.replace(/-/g," ")}</td>
+                      <td><UrgencyPill level={r.urgencyLevel} /></td>
+                      <td style={{ maxWidth:"160px", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap" }}>{r.location}</td>
+                      <td><StatusPill status={r.status} /></td>
+                      <td>{r.expiryRequirement ? new Date(r.expiryRequirement).toLocaleDateString() : "—"}</td>
+                      <td>{new Date(r.createdAt).toLocaleDateString()}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
 
-            {totalPages > 1 && (
+            {Math.ceil(requests.length / rowsPerPage) > 1 && (
               <div className="table-pagination">
                 <button
                   className="pagination-btn"
@@ -167,15 +224,13 @@ function OverviewPage({ username, verifyStatus, requests, orders, toast }) {
                   </svg>
                   Previous
                 </button>
-
                 <div className="pagination-info">
-                  Page <strong>{currentPage + 1}</strong> of <strong>{totalPages}</strong>
+                  Page <strong>{currentPage + 1}</strong> of <strong>{Math.ceil(requests.length / rowsPerPage)}</strong>
                 </div>
-
                 <button
                   className="pagination-btn"
-                  onClick={() => setCurrentPage(Math.min(totalPages - 1, currentPage + 1))}
-                  disabled={currentPage === totalPages - 1}
+                  onClick={() => setCurrentPage(Math.min(Math.ceil(requests.length / rowsPerPage) - 1, currentPage + 1))}
+                  disabled={currentPage === Math.ceil(requests.length / rowsPerPage) - 1}
                 >
                   Next
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14">
@@ -547,7 +602,7 @@ function DonateModal({ request, ngoUsername, ngoData, onClose, onSuccess }) {
     setStep("paying");
 
     try {
-      const res = await fetch("https://refeed-hosting-backend-production.up.railway.app/api/payment/initiate", {
+      const res = await fetch("http://localhost:5000/api/payment/initiate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
